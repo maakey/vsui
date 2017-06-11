@@ -1,0 +1,128 @@
+@import "../../base/fn";
+
+.vsui-radioPage {
+    padding-top: @vsuiPaddingTop;
+    width: @vsuiRadioMarginMiddle+@vsuiRadioWidth*2;
+    margin: 0 auto;
+    .vsui-radio {
+        &.checked {
+            color: @vsuiTextColorWhite;
+            background: @vsuiRadioCheckedBg;
+            -moz-box-shadow: @vsuiRadioCheckedShadow;
+            //Safari and Google chrome10.0-
+            -webkit-box-shadow: @vsuiRadioCheckedShadow;
+            //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+            box-shadow: @vsuiRadioCheckedShadow;
+            &:after {
+                border: @vsuiRadioBorderWidth solid @vsuiBoardColorPrimary;
+            }
+        }
+        height: @vsuiRadioHeight;
+        width: @vsuiRadioWidth;
+        float: left;
+        display: block;
+        line-height: @vsuiRadioHeight;
+        font-size: @vsuiRadioFontSize;
+        border-radius: @vsuiRadioBorderRadius;
+        position: relative;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+        margin-bottom: @vsuiRadioMarginBottom;
+        color: @vsuiTextColor;
+        background-color: @vsuiColorSecond;
+        -moz-box-shadow: @vsuiRadioShadow;
+        //Safari and Google chrome10.0-
+        -webkit-box-shadow: @vsuiRadioShadow;
+        //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+        box-shadow: @vsuiRadioShadow;
+        overflow: hidden;
+        input {
+            display: none;
+        }
+        .setTapColor();
+        &:nth-child(odd) {
+            margin-right: @vsuiRadioMarginMiddle;
+        }
+        &:after {
+            transform: scale(.5);
+            transform-origin: 0 0;
+            box-sizing: border-box;
+            border-radius: @vsuiRadioBorderRadius*2;
+            content: " ";
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: @vsuiRadioBorderWidth solid @vsuiBoardColorSecond;
+        }
+        //    line-height: unit(@vsuiBtnHeight/@vsuiBtnFontSize);
+
+    }
+
+    .vsui-radio-input{
+        height: @vsuiRadioHeight;
+        width: @vsuiRadioWidth*2+@vsuiRadioMarginMiddle;
+        float: left;
+        display: block;
+        line-height: @vsuiRadioHeight;
+        font-size: @vsuiRadioFontSize;
+        border-radius: @vsuiRadioBorderRadius;
+        position: relative;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+        margin-bottom: @vsuiRadioMarginBottom;
+        color: @vsuiTextColor;
+        background-color: @vsuiColorSecond;
+        -moz-box-shadow: @vsuiRadioShadow;
+        //Safari and Google chrome10.0-
+        -webkit-box-shadow: @vsuiRadioShadow;
+        //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+        box-shadow: @vsuiRadioShadow;
+        overflow: hidden;
+        .setTapColor();
+        input{
+            width: @vsuiRadioWidth*2+@vsuiRadioMarginMiddle - 2*@vsuiRadioBorderRadius;
+            height: @vsuiRadioHeight;
+            line-height: @vsuiRadioHeight;
+            font-size: @vsuiRadioFontSize;
+            color: @vsuiTextColor;
+            text-align: center;
+            border:0;
+            background-color: rgba(255,255,255,0);
+        }
+        &:after {
+            transform: scale(.5);
+            transform-origin: 0 0;
+            box-sizing: border-box;
+            border-radius: @vsuiRadioBorderRadius*2;
+            content: " ";
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: @vsuiRadioBorderWidth solid @vsuiBoardColorSecond;
+        }
+        &.checked {
+            color: @vsuiTextColorWhite;
+            background: @vsuiRadioInputCheckedBg;
+            -moz-box-shadow: @vsuiRadioCheckedShadow;
+            //Safari and Google chrome10.0-
+            -webkit-box-shadow: @vsuiRadioCheckedShadow;
+            //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+            box-shadow: @vsuiRadioCheckedShadow;
+            &:after {
+                border: @vsuiRadioBorderWidth solid @vsuiBoardColorPrimary;
+            }
+            input{
+                color: @vsuiTextColorWhite;
+                text-align: center;
+            }
+        }
+    }
+
+
+}

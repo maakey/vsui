@@ -1,0 +1,21 @@
+@import "../../base/fn";
+
+.vsui-content {
+    top: @vsuiHeaderHeight + @vsuiHeaderPaddingTop + @vsuiHeaderMarginTop;
+    bottom:@vsuiFooterHeight;
+    width: 350px;
+    margin-left: @vsuiPadMargin;
+    margin-right: @vsuiPadMargin;
+    background-color: @vsuiBgColorDefault;
+    position: fixed;
+    z-index: @vsuiContZIndex;
+    overflow:scroll;
+    overflow-x: hidden;
+
+    -moz-box-shadow: @vsuiContShadow;
+    //Safari and Google chrome10.0-
+    -webkit-box-shadow: @vsuiContShadow;
+    //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+    box-shadow: @vsuiContShadow;
+    border: 0 @vsuiContBorderWidth solid @vsuiBoardColorSecond;
+}

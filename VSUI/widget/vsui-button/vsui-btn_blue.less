@@ -1,0 +1,22 @@
+@import "../../base/fn";
+
+.vsui-btn_blue {
+    color: @vsuiTextColorWhite;
+    background: @vsuiBtnBlueBg;
+  -moz-box-shadow: @vsuiBtnBlueShadow;
+  //Safari and Google chrome10.0-
+  -webkit-box-shadow: @vsuiBtnBlueShadow;
+  //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+  box-shadow: @vsuiBtnBlueShadow;
+
+
+    &:active {
+        background: @vsuiBtnBlueActiveBg;
+        &:after{
+            border: @vsuiBtnBorderWidth solid @vsuiBtnBlueActiveBorderColor;
+        }
+    }
+    &:after{
+        border: @vsuiBtnBorderWidth solid @vsuiBoardColorPrimary;
+    }
+}

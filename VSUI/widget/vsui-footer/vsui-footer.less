@@ -1,0 +1,31 @@
+@import "../../base/fn";
+
+.vsui-footer {
+    height: @vsuiFooterHeight;
+    width: 350px;
+    margin-left: @vsuiPadMargin;
+    margin-right: @vsuiPadMargin;
+    background-color: @vsuiBgColorDefault;
+    position: fixed;
+    z-index: @vsuiFooterZIndex;
+    bottom: 0;
+
+    -moz-box-shadow: @vsuiFooterShadow;
+    //Safari and Google chrome10.0-
+    -webkit-box-shadow: @vsuiFooterShadow;
+    //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+    box-shadow: @vsuiFooterShadow;
+    border: 0 @vsuiFooterBorderWidth solid @vsuiBoardColorSecond;
+    .vsui-footer-btn-item{
+
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content:center;
+        height: 100%;
+    }
+}

@@ -1,0 +1,69 @@
+@import "../../base/fn";
+@import "vsui-btn_global";
+@import "vsui-btn_white";
+@import "vsui-btn_blue";
+
+.vsui-btn {
+    height: @vsuiBtnHeight;
+    width: @vsuiBtnWidth;
+    display: block;
+    line-height: @vsuiBtnHeight;
+    font-size: @vsuiBtnFontSize;
+    border-radius: @vsuiBtnBorderRadius;
+
+    &:after {
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @vsuiBtnBorderRadius*2;
+    }
+}
+
+.vsui-btn_mini {
+    height: @vsuiBtnMiniHeight;
+    width: @vsuiBtnMiniWidth;
+    .vsui-btn_inline();
+    line-height: @vsuiBtnMiniHeight;
+    font-size: @vsuiBtnMiniFontSize;
+    border-radius: @vsuiBtnMiniBorderRadius;
+    &:after {
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @vsuiBtnMiniBorderRadius*2;
+    }
+}
+
+.vsui-btn_header {
+    height: @vsuiBtnHeaderHeight;
+    width: @vsuiBtnHeaderWidth;
+    display: block;
+    line-height: @vsuiBtnHeaderHeight;
+    font-size: @vsuiBtnHeaderFontSize;
+    border-radius: @vsuiBtnBorderRadius;
+
+    color: @vsuiTextColorWhite;
+    background: @vsuiBtnHeaderBg;
+
+    -moz-box-shadow: @vsuiBtnBlueShadow;
+    //Safari and Google chrome10.0-
+    -webkit-box-shadow: @vsuiBtnBlueShadow;
+    //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+    box-shadow: @vsuiBtnBlueShadow;
+
+    &:active {
+        background: @vsuiBtnHeaderActiveBg;
+        &:after {
+            border: @vsuiBtnBorderWidth solid @vsuiBtnBlueActiveBorderColor;
+        }
+    }
+
+    &:after {
+        border: @vsuiBtnBorderWidth solid @vsuiBoardColorPrimary;
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @vsuiBtnBorderRadius*2;
+    }
+}
+

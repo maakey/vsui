@@ -1,0 +1,118 @@
+@import "../../base/fn";
+
+.vsui-panel {
+    position: relative;
+    padding: @vsuiPanelPadding;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    color: @vsuiTextColor;
+    .setTapColor();
+    &:after {
+        .setBottomLine(@vsuiBoardColorSecond);
+    }
+
+    .vsui-panel__hd {
+        height: @vsuiPanelHDHeight;
+        width: @vsuiPanelHDWidth;
+        line-height: @vsuiPanelHDHeight;
+        margin-right: @vsuiPanelHDMarginRight;
+        text-align: center;
+        position: relative;
+        &:before {
+            content: " ";
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            box-sizing: border-box;
+            border: 2px solid @vsuiBoardColorSecond;
+        }
+    }
+
+    .vsui-panel__thumb {
+        height: @vsuiPanelHDHeight;
+        width: @vsuiPanelHDWidth;
+        line-height: @vsuiPanelHDHeight;
+
+    }
+    .vsui-panel__hd-footer {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        span {
+
+            background-color: @vsuiPanelHDFooterBgColor;
+            color: @vsuiPanelHDFooterColor;
+            font-size: @vsuiPanelHDFooterFontSize;
+            line-height: @vsuiPanelHDFooterFontSize;
+            vertical-align: -30px;
+        }
+    }
+    .vsui-panel__bd {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+
+        .vsui-panel__date {
+            margin: @vsuiPanelTextMargin auto;
+            font-size: @vsuiPanelDescFontSize;
+
+        }
+        .vsui-panel__title {
+            display: inline-flex;
+            align-items: center;
+            font-size: @vsuiPanelTitleFontSize;
+            height: @vsuiPanelTitleFontSize*2;
+
+        }
+        .vsui-panel__row {
+            margin: @vsuiPanelTextMargin auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+            .vsui-panel__desc {
+                font-size: @vsuiPanelDescFontSize;
+            }
+
+        }
+        div:first-child {
+            margin-top: 0;
+        }
+        div:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+
+}
+
+a.vsui-panel:active {
+    color: @vsuiTextColorWhite;
+    background-color: @vsuiBgColorActive;
+}
+
+.vsui-panel-active {
+    color: @vsuiTextColorWhite;
+    background-color: @vsuiBgColorActive;
+}
+.vsui-panel-mini {
+    .vsui-panel__hd,.vsui-panel__thumb {
+        height: @vsuiPanelHDMiniHeight;
+        width: @vsuiPanelHDMiniWidth;
+        line-height: @vsuiPanelHDMiniHeight;
+    }
+    .vsui-panel__bd {
+        .vsui-panel__row {
+            margin: @vsuiPanelMiniTextMargin auto;
+        }
+    }
+}

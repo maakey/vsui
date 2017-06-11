@@ -1,0 +1,47 @@
+@import "../../base/fn";
+
+.vsui-header{
+  height: @vsuiHeaderHeight;
+  width: 350px;
+  margin-top:@vsuiHeaderMarginTop;
+  margin-left: @vsuiPadMargin;
+  margin-right: @vsuiPadMargin;
+  padding-top: @vsuiHeaderPaddingTop;
+  background-color:@vsuiColorPrimary;
+  position: fixed;
+  z-index: @vsuiHeaderZIndex;
+  border-radius: @vsuiHeaderBorderRadius @vsuiHeaderBorderRadius 0 0;
+  -moz-box-shadow: @vsuiHeaderShadow;
+  //Safari and Google chrome10.0-
+  -webkit-box-shadow: @vsuiHeaderShadow;
+  //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+  box-shadow: @vsuiHeaderShadow;
+  &:before{
+    content: " ";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border: @vsuiHeaderBorderWidth solid @vsuiBoardColorPrimary;
+    border-radius: @vsuiHeaderBorderRadius*2 @vsuiHeaderBorderRadius*2 0 0
+
+  }
+
+  .vsui-header_title{
+    position: absolute;
+    left: 24px;
+    padding: (@vsuiHeaderHeight  - @vsuiHeaderTitleFontSize)/2 0;
+    font-size: @vsuiHeaderTitleFontSize;
+    line-height: @vsuiHeaderTitleFontSize;
+    color: @vsuiTextColorWhite;
+  }
+  .vsui-header_btn{
+    position: absolute;
+    right: 24px;
+    padding: (@vsuiHeaderHeight  - @vsuiBtnHeaderHeight)/2 0;
+  }
+}

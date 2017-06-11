@@ -1,0 +1,108 @@
+@import "../../base/fn";
+
+.vsui-grids {
+    .setBoard() {
+        content: " ";
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @vsuiGridBorderRadius;
+        background-color: white; //@vsuiColorSecond;
+        -moz-box-shadow: @vsuiGridShadow;
+        //Safari and Google chrome10.0-
+        -webkit-box-shadow: @vsuiGridShadow;
+        //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
+        box-shadow: @vsuiGridShadow;
+        border: @vsuiGridBorderWidth solid @vsuiBoardColorSecond;
+
+    }
+    .vsui-grid {
+        position: relative;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+        height: @vsuiGridHeight+@vsuiGridVerticalDistance;
+        width: 50%;
+        display: block;
+        float: left;
+        color: @vsuiTextColor;
+        padding-top: @vsuiGridVerticalDistance/2+@vsuiGridItemMargin;
+        padding-bottom: @vsuiGridVerticalDistance/2+@vsuiGridItemMargin;
+        .setTapColor();
+        overflow: hidden;
+        &:nth-child(odd) {
+            padding-left:@vsuiGridHorizontalDistance;
+            padding-right: @vsuiGridVerticalDistance/2;
+            &:before {
+                .setBoard();
+                left: @vsuiGridHorizontalDistance;
+                right: @vsuiGridHorizontalDistance/2;
+            }
+        }
+        &:nth-child(even) {
+            padding-left:@vsuiGridHorizontalDistance/2;
+            padding-right: @vsuiGridHorizontalDistance;
+            &:before {
+                .setBoard();
+                left: @vsuiGridHorizontalDistance/2;
+                right: @vsuiGridHorizontalDistance;
+            }
+        }
+        &:active:before{
+                background-color: @vsuiGridWhiteActiveBg;
+                border: @vsuiGridBorderWidth solid @vsuiGridWhiteActiveBorderColor;
+        }
+
+
+
+        .vsui-grid__hd {
+            height: @vsuiGridHDHeight;
+            width: @vsuiGridHDWidth;
+            line-height: @vsuiGridHDHeight;
+            text-align: center;
+            position: relative;
+            margin-bottom: @vsuiGridItemMargin;
+            margin-left: auto;
+            margin-right: auto;
+            &:before {
+                content: " ";
+                width: 200%;
+                height: 200%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: scale(.5);
+                transform-origin: 0 0;
+                box-sizing: border-box;
+                border: @vsuiGridBorderWidth*2 solid @vsuiBoardColorSecond;
+            }
+        }
+        .vsui-grid__thumb {
+            height: @vsuiGridHDHeight;
+            width: @vsuiGridHDWidth;
+            line-height: @vsuiGridHDHeight;
+        }
+        .vsui-grid__bd {
+            position: relative;
+            .vsui-grid__title {
+                display: inline-flex;
+                align-items: center;
+                font-size: @vsuiGridTitleFontSize;
+                height: @vsuiGridTitleFontSize*2;
+            }
+
+            .vsui-grid__desc {
+                margin: @vsuiGridTextMargin auto;
+                font-size: @vsuiGridDescFontSize;
+            }
+            div:first-child {
+                margin-top: 0;
+            }
+            div:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
