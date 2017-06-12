@@ -135,7 +135,7 @@ a {
   margin-right: 12px;
   padding-top: 5px;
   background-color: #1195D8;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   border-radius: 12px 12px 0 0;
   -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
@@ -174,7 +174,7 @@ a {
   margin-left: 12px;
   margin-right: 12px;
   background-color: #F7F5F5;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   bottom: 0;
   -moz-box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.05);

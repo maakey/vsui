@@ -11,14 +11,14 @@ $(document).ready(function () {
 
     //vsui-radioPage
     $(".vsui-radio input[type='radio']").on('click', function () {
-        $('.vsui-radio').each(
+        $(".vsui-radio").each(
             function () {
-                $(this).removeClass('checked');
+                $(this).removeClass("checked");
             });
-        $(".vsui-radio-input").removeClass('checked');
-        $('.vsui-radio input:checked').each(
+        $(".vsui-radio-input").removeClass("checked");
+        $(".vsui-radio input:checked").each(
             function () {
-                $(this).parent('label').addClass('checked');
+                $(this).parent("label").addClass("checked");
             });
     });
     $(".vsui-radio-input input[type='text']").on('click', function () {
@@ -67,5 +67,15 @@ $(document).ready(function () {
         }
         return res;
     }
+    //解决输入框输入法遮挡问题
+    $("input[type='text']").on('focus',function(){
+        //自动反弹 输入法高度自适应
+        var target = this;
+        setTimeout(function(){
+            target.scrollIntoViewIfNeeded();
+        },200);
+    });
+
+
 });
 
