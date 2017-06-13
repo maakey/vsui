@@ -1,0 +1,20 @@
+@import "../../base/fn";
+
+.vsui-mask {
+    position: fixed;
+    background: @maskBackground;
+    &.content{
+        z-index: @vsuiContMaskZIndex;
+        top: @vsuiHeaderHeight+@vsuiHeaderPaddingTop+@vsuiHeaderMarginTop;
+        right: @vsuiPadMargin;
+        left: @vsuiPadMargin;
+        bottom: 0;
+    }
+    &.fullScreen{
+        z-index: @vsuiFullScreenMaskZIndex;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+}

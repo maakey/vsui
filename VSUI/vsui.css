@@ -175,7 +175,7 @@ a {
   margin-right: 12px;
   background-color: #F7F5F5;
   position: fixed;
-  z-index: 1000;
+  z-index: 500;
   bottom: 0;
   -moz-box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.05);
@@ -539,6 +539,14 @@ a.vsui-panel:active {
   text-align: center;
 }
 .vsui-picker {
+  position: fixed;
+  top: 75px;
+  height: 84px;
+  width: 350px;
+  overflow: hidden;
+  z-index: 900;
+  margin-left: 12px;
+  margin-right: 12px;
   /*  height: @vsuiHeaderHeight;
     width: 350px;
     margin-top:@vsuiHeaderMarginTop;
@@ -583,11 +591,54 @@ a.vsui-panel:active {
         padding: (@vsuiHeaderHeight  - @vsuiBtnHeaderHeight)/2 0;
     }*/
 }
+.vsui-picker .vsui-btnPicker {
+  bottom: 26px;
+  position: absolute;
+  background-color: #1195D8;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  width: 100%;
+}
+.vsui-picker .vsui-btnPicker .vsui-btn:first-child {
+  margin: 0 auto 0 20px;
+}
+@media (max-width: 320px) {
+  .vsui-picker .vsui-btnPicker .vsui-btn:first-child {
+    margin: 0;
+  }
+}
+.vsui-picker .vsui-btnPicker .vsui-btn:last-child {
+  margin: 0 20px 0 auto;
+}
+@media (max-width: 320px) {
+  .vsui-picker .vsui-btnPicker .vsui-btn:last-child {
+    margin: 0;
+  }
+}
+.vsui-picker .vsui-btnPicker:before {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #0d67b4;
+}
 .vsui-picker .vsui-picker-tapGroup {
-  top: 75px;
-  margin-left: 12px;
-  margin-right: 12px;
-  position: fixed;
+  bottom: 0;
+  position: absolute;
+  background-color: #F7F5F5;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -597,8 +648,7 @@ a.vsui-panel:active {
   flex-wrap: nowrap;
   justify-content: center;
   height: 26px;
-  width: 350px;
-  z-index: 900;
+  width: 100%;
 }
 .vsui-picker .vsui-picker-tapGroup .vsui-picker-tap {
   -webkit-box-flex: 1;
@@ -612,6 +662,10 @@ a.vsui-panel:active {
   color: #FFFFFF;
   background-color: #1195D8;
   border-radius: 0 0 6px 6px;
+  -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+  /*&:active,*/
 }
 .vsui-picker .vsui-picker-tapGroup .vsui-picker-tap:after {
   content: " ";
@@ -628,10 +682,28 @@ a.vsui-panel:active {
   border-color: #0d67b4;
   border-radius: 0 0 12px 12px;
 }
-.vsui-picker .vsui-picker-tapGroup .vsui-picker-tap:active {
+.vsui-picker .vsui-picker-tapGroup .vsui-picker-tap.active {
   color: #666666;
-  background-color: #F7F5F5;
+  background-color: #fdfdfd;
 }
-.vsui-picker .vsui-picker-tapGroup .vsui-picker-tap:active:after {
+.vsui-picker .vsui-picker-tapGroup .vsui-picker-tap.active:after {
   border-color: #ededed;
+}
+.vsui-mask {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+}
+.vsui-mask.content {
+  z-index: 800;
+  top: 75px;
+  right: 12px;
+  left: 12px;
+  bottom: 0;
+}
+.vsui-mask.fullScreen {
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }

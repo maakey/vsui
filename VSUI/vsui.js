@@ -1,11 +1,14 @@
 /**
  * Created by m on 2017/6/2.
  */
+
+'use strict';
+
 $(document).ready(function () {
     $(".vsui-header").width($(window).width() - 24);
     $(".vsui-content").width($(window).width() - 24);
     $(".vsui-footer").width($(window).width() - 24);
-    $(".vsui-picker-tapGroup").width($(window).width() - 24);
+    $(".vsui-picker").width($(window).width() - 24);
 
 
 
