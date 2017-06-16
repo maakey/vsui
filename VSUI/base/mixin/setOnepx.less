@@ -14,6 +14,19 @@
 .setBottomLine(@c: #EDEDED) {
     content: " ";
     position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid @c;
+    color: @c;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+}
+
+.setBottomShortLine(@c: #EDEDED) {
+    content: " ";
+    position: absolute;
     left: 20px;
     bottom: 0;
     right: 20px;

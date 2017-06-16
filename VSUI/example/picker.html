@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>picker</title>
     <link rel="stylesheet" href="../vsui.css">
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+    <link rel="stylesheet" href="../weui/weui2.css">
     <script src="../jquery.min.js"></script>
     <script src="../vsui.js"></script>
     <script src="../datePicker.js"></script>
@@ -19,18 +19,31 @@
         <a href="javascript:;" class="vsui-btn vsui-btn_header">按钮</a>
     </div>
 </div>
-<div class="vsui-picker">
-    <div class="vsui-btnPicker">
+<!--<div class="vsui-picker">
+    <div class="vsui-btnPicker vsui-choose">
         <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
         <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
         <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
+    </div>
+    <div class="vsui-btnPicker vsui-date">
+        <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
+        <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
+        <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
+    </div>
+    <div class="vsui-datePicker">
+        <div class="vsui-picker__hd">自定义时间</div>
+        <div class="vsui-picker__bd">
+            <div class="vsui-picker__middle">至</div>
+        </div>
+        <div class="vsui-picker__fd"><a href="javascript:;" data-action="select" id="vsui-picker-confirm"
+                                        class="vsui-btn vsui-btn_blue vsui-picker__action">确定</a></div>
     </div>
     <div class="vsui-picker-tapGroup">
         <div class="vsui-picker-tap">美食天下</div>
         <div class="vsui-picker-tap">花卷小亮</div>
     </div>
 
-</div>
+</div>-->
 <div class="vsui-content">
     <a href="javascript:;" class="vsui-btn vsui-btn_white">返回</a>
     <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
@@ -44,25 +57,45 @@
     </div>
 </div>
 <script>
-    $(".vsui-btn_white").click(function(){
-        datePicker({
-            start: 1990,
-            end: 2020,
-
-            onChange: function(result){
-                console.log(result);
-            },
-            onConfirm: function(result){
-                console.log(result);
-            },
-            id: 'datePicker'
-        });
+    /**
+     * @example
+     * // 示例：
+     * VsuiPicker({
+     *     tapName1: "单据类型",
+     *     tapName2: "日期筛选",
+     *     btnName1: "出库单",
+     *     btnName2: "入库单",
+     *     btnName3: "全部",
+     *     btnDate1: "out",
+     *     btnDate2: "in",
+     *     btnDate3: "all",
+     *     onChoose: function(result){
+     *         console.log(result);
+     *     },
+     *     onConfirm: function(startDate,endDate){
+     *         console.log(startDate);
+     *         console.log(endDate);
+     *     },
+     * });
+     *
+     */
+    VsuiPicker({
+        tapName1: "单据类型11",
+        tapName2: "日期筛选22",
+        btnName1: "出库单33",
+        btnName2: "入库单4",
+        btnName3: "全部5",
+        btnDate1: "out6",
+        btnDate2: "in7",
+        btnDate3: "all8",
+        onConfirm: function (startDate, endDate) {
+            console.log(startDate);
+            console.log(endDate);
+        },
+        onChoose: function (startDate) {
+            console.log(startDate);
+        },
     });
-    $(".vsui-btn_blue").click(function(){
-        $(".test").animate({height:'30px'});
-    });
-
-
 </script>
 </body>
 </html>

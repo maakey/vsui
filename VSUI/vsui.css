@@ -541,58 +541,24 @@ a.vsui-panel:active {
 .vsui-picker {
   position: fixed;
   top: 75px;
-  height: 84px;
+  height: 26px;
   width: 350px;
   overflow: hidden;
   z-index: 900;
   margin-left: 12px;
   margin-right: 12px;
-  /*  height: @vsuiHeaderHeight;
-    width: 350px;
-    margin-top:@vsuiHeaderMarginTop;
-    margin-left: @vsuiPadMargin;
-    margin-right: @vsuiPadMargin;
-    padding-top: @vsuiHeaderPaddingTop;
-    background-color:@vsuiColorPrimary;
-    position: fixed;
-    z-index: @vsuiHeaderZIndex;
-    border-radius: @vsuiHeaderBorderRadius @vsuiHeaderBorderRadius 0 0;
-    -moz-box-shadow: @vsuiHeaderShadow;
-    //Safari and Google chrome10.0-
-    -webkit-box-shadow: @vsuiHeaderShadow;
-    //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
-    box-shadow: @vsuiHeaderShadow;
-    &:before{
-        content: " ";
-        width: 200%;
-        height: 200%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(.5);
-        transform-origin: 0 0;
-        box-sizing: border-box;
-        border: @vsuiHeaderBorderWidth solid @vsuiBoardColorPrimary;
-        border-radius: @vsuiHeaderBorderRadius*2 @vsuiHeaderBorderRadius*2 0 0
-
-    }
-
-    .vsui-header_title{
-        position: absolute;
-        left: 24px;
-        padding: (@vsuiHeaderHeight  - @vsuiTitleFontSize)/2 0;
-        font-size: @vsuiTitleFontSize;
-        line-height: @vsuiTitleFontSize;
-        color: @vsuiTextColorWhite;
-    }
-    .vsui-header_btn{
-        position: absolute;
-        right: 24px;
-        padding: (@vsuiHeaderHeight  - @vsuiBtnHeaderHeight)/2 0;
-    }*/
+  -webkit-transition: height 0.5s;
+  -moz-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  transition: height 0.5s;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .vsui-picker .vsui-btnPicker {
-  bottom: 26px;
+  top: 0;
   position: absolute;
   background-color: #1195D8;
   display: -webkit-box;
@@ -622,6 +588,145 @@ a.vsui-panel:active {
   }
 }
 .vsui-picker .vsui-btnPicker:before {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #0d67b4;
+}
+.vsui-picker .vsui-datePicker {
+  position: absolute;
+  width: 100%;
+  height: 223px;
+  left: 0;
+  top: 58px;
+  background-color: #1195D8;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__hd {
+  padding: 11px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-align: center;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  background-color: #ffffff;
+  height: 102px;
+  overflow: hidden;
+  margin: 0 20px;
+  padding: 9px 0;
+  border-radius: 6px;
+}
+@media (max-width: 320px) {
+  .vsui-picker .vsui-datePicker .vsui-picker__bd {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem {
+  margin: 0 auto;
+  display: flex;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group {
+  position: relative;
+  height: 100%;
+  width: 133px;
+  margin: 0 4px;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group.x4 {
+  width: 55px;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group.x2 {
+  width: 27px;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__mask {
+  display: none;
+  position: absolute;
+  top: -9px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  margin: 0 auto;
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  background-position: top, bottom;
+  background-size: 100% 46px;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__indicator {
+  width: 100%;
+  height: 26px;
+  position: absolute;
+  left: 0;
+  top: 38px;
+  z-index: 3;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__indicator:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #1195D8;
+  color: #1195D8;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__indicator:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #1195D8;
+  color: #1195D8;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__dateItem .vsui-picker__group .vsui-picker__content .vsui-picker__item {
+  padding: 0;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #1195D8;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 18px;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__bd .vsui-picker__middle {
+  position: relative;
+  height: 100%;
+  margin: 42px auto;
+  font-size: 18px;
+  color: #1195D8;
+  line-height: 18px;
+}
+.vsui-picker .vsui-datePicker .vsui-picker__fd {
+  padding: 15px;
+  text-align: center;
+}
+.vsui-picker .vsui-datePicker:before {
   content: " ";
   width: 200%;
   height: 200%;
@@ -692,6 +797,7 @@ a.vsui-panel:active {
 .vsui-mask {
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
+  display: none;
 }
 .vsui-mask.content {
   z-index: 800;

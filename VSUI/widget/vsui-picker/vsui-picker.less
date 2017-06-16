@@ -1,19 +1,32 @@
 @import "../../base/fn";
-.vsui-picker{
+
+.vsui-picker {
     position: fixed;
     top: @vsuiHeaderHeight+@vsuiHeaderPaddingTop+@vsuiHeaderMarginTop;
-    // 只有tap
-    //height: @vsuiPickerTapHeight;
+     //只有tap
+    height: @vsuiPickerTapHeight;
     // 叠加btn
-    height: @vsuiPickerTapHeight+@vsuiPickerBtnHeight;
+     //height: @vsuiPickerTapHeight+@vsuiPickerBtnHeight;
+    // 叠加date
+     //height: @vsuiPickerTapHeight+@vsuiPickerBtnHeight+@vsuiPickerDateHeight;
 
     width: 350px;
-    overflow:hidden;
-    z-index: @vsuiPickZIndex;
+    overflow: hidden;
+    z-index: @vsuiPickerZIndex;
     margin-left: @vsuiPadMargin;
     margin-right: @vsuiPadMargin;
-    .vsui-btnPicker{
-        bottom:  @vsuiPickerTapHeight;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    .vsui-btnPicker {
+
+        top: 0;
         position: absolute;
         background-color: @vsuiBgColorActive;
         display: -webkit-box;
@@ -22,24 +35,24 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
-        justify-content:space-between;
+        justify-content: space-between;
         height: @vsuiPickerBtnHeight;
         width: 100%;
-        .vsui-btn{
-            &:first-child{
+        .vsui-btn {
+            &:first-child {
                 margin: 0 auto 0 @vsuiPickerContPadding;
-                @media (max-width: 320px){
+                @media (max-width: 320px) {
                     margin: 0;
                 }
             }
-            &:last-child{
+            &:last-child {
                 margin: 0 @vsuiPickerContPadding 0 auto;
-                @media (max-width: 320px){
+                @media (max-width: 320px) {
                     margin: 0;
                 }
             }
         }
-        &:before{
+        &:before {
             content: " ";
             width: 200%;
             height: 200%;
@@ -56,9 +69,142 @@
         }
     }
 
+    .vsui-datePicker {
 
+        position: absolute;
+        width: 100%;
+        height: @vsuiPickerDateHeight;
+        left: 0;
+        top:@vsuiPickerBtnHeight;
 
-    .vsui-picker-tapGroup{
+        background-color: @vsuiBgColorActive;
+        //z-index: 5000;
+        //backface-visibility: hidden;
+        //transform: translate(0, 100%);
+        //slide up animation
+        //transition: transform .3s;
+
+        .vsui-picker__hd {
+            padding: @vsuiPickerDateHDPadding;
+            font-size: @vsuiPickerDateHDFontSize;
+            line-height: @vsuiPickerDateHDFontSize;
+            color: @vsuiTextColorWhite;
+            text-align: center;
+        }
+        .vsui-picker__bd {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            background-color: #ffffff;
+            height: @vsuiPickerDateItemHeight*@vsuiPickerDateItemCount;
+            overflow: hidden;
+            margin: 0 @vsuiPickerContPadding;
+            @media (max-width: 320px) {
+                margin: 0;
+                border-radius:0;
+            }
+            padding: 9px 0;
+            border-radius: @vsuiPickerTapRadius;
+            .vsui-picker__dateItem {
+                margin: 0 auto;
+                //justify-content: space-around;
+                display: flex;
+                .vsui-picker__group {
+                    position: relative;
+                    height: 100%;
+                    width: @vsuiPickerGroupWidthX2+@vsuiPickerGroupWidthX1*2+@vsuiPickerGroupMargin*6;
+                    margin: 0 @vsuiPickerGroupMargin;
+                    //float: left;
+                    //-webkit-mask-box-image: -webkit-linear-gradient(bottom,transparent,transparent 5%,#fff 50%,#fff 50%,transparent 95%,transparent);
+                    &.x4 {
+                        width: @vsuiPickerGroupWidthX2;
+                    }
+                    &.x2 {
+                        width: @vsuiPickerGroupWidthX1;
+                    }
+                    .vsui-picker__mask {
+                        display: none;
+                        position: absolute;
+                        top: -9px;
+                        left: 0;
+                        width: 100%;
+                        height: 120px;
+                        margin: 0 auto;
+                        z-index: 3;
+                        background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+                        background-position: top, bottom;
+                        background-size: 100% @vsuiPickerDateItemHeight+12;
+                        background-repeat: no-repeat;
+                        transform: translateZ(0);
+                    }
+
+                    .vsui-picker__indicator {
+                        width: 100%;
+                        height: @vsuiPickerDateItemHeight - 8;
+                        position: absolute;
+                        left: 0;
+                        top: @vsuiPickerDateItemHeight + 4;
+                        z-index: 3;
+                        &:before {
+                            .setTopLine(@vsuiColorPrimary);
+                        }
+                        &:after {
+                            .setBottomLine(@vsuiColorPrimary);
+                        }
+                    }
+
+                    .vsui-picker__content {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        .vsui-picker__item {
+                            padding: 0;
+                            height: @vsuiPickerDateItemHeight;
+                            line-height: @vsuiPickerDateItemHeight;
+                            text-align: center;
+                            color: @vsuiColorPrimary;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            font-size: @vsuiPickerDateFontSize;
+                        }
+                    }
+                }
+            }
+            .vsui-picker__middle {
+                position: relative;
+                height: 100%;
+                margin: (@vsuiPickerDateItemHeight * @vsuiPickerDateItemCount - @vsuiPickerDateFontSize)/2 auto;
+                font-size: @vsuiPickerDateFontSize;
+                color:@vsuiColorPrimary;
+                line-height: @vsuiPickerDateFontSize;
+                //-webkit-mask-box-image: -webkit-linear-gradient(bottom,transparent,transparent 5%,#fff 50%,#fff 50%,transparent 95%,transparent);
+            }
+        }
+        .vsui-picker__fd {
+            padding: @vsuiPickerDateFDPadding;
+            text-align: center;
+        }
+        &:before {
+            content: " ";
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            box-sizing: border-box;
+            border-width: 0 @vsuiPickerTapBorderWidth 0 @vsuiPickerTapBorderWidth;
+            border-style: solid;
+            border-color: @vsuiBoardColorPrimary;
+
+        }
+    }
+
+    .vsui-picker-tapGroup {
         bottom: 0;
         position: absolute;
         background-color: @vsuiBgColorDefault;
@@ -69,11 +215,11 @@
         -webkit-align-items: center;
         align-items: center;
         flex-wrap: nowrap;
-        justify-content:center;
+        justify-content: center;
         height: @vsuiPickerTapHeight;
         width: 100%;
 
-        .vsui-picker-tap{
+        .vsui-picker-tap {
             -webkit-box-flex: 1;
             -webkit-flex: 1;
             flex: 1;
@@ -82,7 +228,7 @@
             font-size: @vsuiTapFontSize;
             line-height: @vsuiTapFontSize;
             text-align: center;
-            color:@vsuiTextColorWhite;
+            color: @vsuiTextColorWhite;
             background-color: @vsuiBgColorActive;
             border-radius: 0 0 @vsuiPickerTapRadius @vsuiPickerTapRadius;
             -moz-box-shadow: @vsuiPickerShadow;
@@ -90,73 +236,31 @@
             -webkit-box-shadow: @vsuiPickerShadow;
             //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
             box-shadow: @vsuiPickerShadow;
-            &:after{
-                    content: " ";
-                    width: 200%;
-                    height: 200%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    transform: scale(.5);
-                    transform-origin: 0 0;
-                    box-sizing: border-box;
-                    border-width: 0 @vsuiPickerTapBorderWidth @vsuiPickerTapBorderWidth @vsuiPickerTapBorderWidth;
-                    border-style: solid;
-                    border-color: @vsuiBoardColorPrimary;
-                    border-radius: 0 0 @vsuiPickerTapRadius*2 @vsuiPickerTapRadius*2
+            &:after {
+                content: " ";
+                width: 200%;
+                height: 200%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: scale(.5);
+                transform-origin: 0 0;
+                box-sizing: border-box;
+                border-width: 0 @vsuiPickerTapBorderWidth @vsuiPickerTapBorderWidth @vsuiPickerTapBorderWidth;
+                border-style: solid;
+                border-color: @vsuiBoardColorPrimary;
+                border-radius: 0 0 @vsuiPickerTapRadius*2 @vsuiPickerTapRadius*2
             }
             /*&:active,*/
-            &.active{
-                color:@vsuiTextColor;
+            &.active {
+                color: @vsuiTextColor;
                 background-color: @vsuiColorSecond;
-                &:after{
+                &:after {
                     border-color: @vsuiBoardColorSecond;
                 }
             }
 
         }
     }
-  /*  height: @vsuiHeaderHeight;
-    width: 350px;
-    margin-top:@vsuiHeaderMarginTop;
-    margin-left: @vsuiPadMargin;
-    margin-right: @vsuiPadMargin;
-    padding-top: @vsuiHeaderPaddingTop;
-    background-color:@vsuiColorPrimary;
-    position: fixed;
-    z-index: @vsuiHeaderZIndex;
-    border-radius: @vsuiHeaderBorderRadius @vsuiHeaderBorderRadius 0 0;
-    -moz-box-shadow: @vsuiHeaderShadow;
-    //Safari and Google chrome10.0-
-    -webkit-box-shadow: @vsuiHeaderShadow;
-    //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
-    box-shadow: @vsuiHeaderShadow;
-    &:before{
-        content: " ";
-        width: 200%;
-        height: 200%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(.5);
-        transform-origin: 0 0;
-        box-sizing: border-box;
-        border: @vsuiHeaderBorderWidth solid @vsuiBoardColorPrimary;
-        border-radius: @vsuiHeaderBorderRadius*2 @vsuiHeaderBorderRadius*2 0 0
 
-    }
-
-    .vsui-header_title{
-        position: absolute;
-        left: 24px;
-        padding: (@vsuiHeaderHeight  - @vsuiTitleFontSize)/2 0;
-        font-size: @vsuiTitleFontSize;
-        line-height: @vsuiTitleFontSize;
-        color: @vsuiTextColorWhite;
-    }
-    .vsui-header_btn{
-        position: absolute;
-        right: 24px;
-        padding: (@vsuiHeaderHeight  - @vsuiBtnHeaderHeight)/2 0;
-    }*/
 }
