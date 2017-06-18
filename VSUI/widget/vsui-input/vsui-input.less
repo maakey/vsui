@@ -1,4 +1,191 @@
 @import "../../base/fn";
 
-.vsui-input{
+/*
+2017.6.16后半夜想的方案
+.vsui-inputBox{
+    width: @vsuiInputBoxWidth;
+    margin: @vsuiInputBoxMarginTop auto;
+    .vsui-input-text{
+        font-size: @vsuiInputFontSize;
+        line-height: @vsuiInputFontSize;
+        height: @vsuiInputHeight;
+        color:@vsuiTextColor;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+
+
+        .name{
+            width:@vsuiInputNameWidth;
+            text-align: end;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            padding: @vsuiInputNamePaddingTop 0 @vsuiInputTextPaddingBottom 0;
+        }
+        .value{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            border-width: 0;
+            background: none;
+            padding: @vsuiInputTextValuePaddingTop 0 @vsuiInputTextPaddingBottom 0;
+            font-size: @vsuiInputFontSize;
+            line-height: @vsuiInputFontSize;
+            color:@vsuiTextColor;
+            border-bottom: 1px solid @vsuiBoardColorSecond;
+
+        }
+    }
+}*/
+.vsui-inputBox {
+    width: 296px;
+    margin: 9px auto;
+    .vsui-input-text {
+        font-size: 16px;
+        line-height: 16px;
+        height: 16px;
+        color: @vsuiTextColor;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        padding: 9px 0;
+        .name{
+            width:90px;
+            text-align: end;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+
+        }
+        input{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            border-width: 0;
+            background: none;
+
+            font-size: 16px;
+            line-height: 16px;
+            color:@vsuiTextColor;
+            border-bottom: 1px solid @vsuiBoardColorSecond;
+        }
+    }
+
+    .vsui-input-textarea {
+        font-size: 16px;
+        line-height: 16px;
+        height: 68px;
+        color: @vsuiTextColor;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+
+        .name{
+            padding: 9px 0;
+            width:90px;
+            text-align: end;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+
+        }
+        textarea{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            border-width: 0;
+            background: none;
+            vertical-align: 50px;
+            font-size: 16px;
+            line-height: 34px;
+            top:-10px;
+            height: 68px;
+            resize: none;
+            color:@vsuiTextColor;
+
+            //border-bottom: 1px solid @vsuiBoardColorSecond;
+        }
+        &:before{
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 90px;
+            bottom: 0;
+            right: 0;
+            //height: 1px;
+            border-top: 2px solid @vsuiBoardColorSecond;
+            border-bottom: 2px solid @vsuiBoardColorSecond;
+            color: @vsuiBoardColorSecond;
+            transform-origin: 0 50px;
+            transform: scaleY(0.5);
+        }
+    }
+    /*.vsui-input-checkbox{
+        input[type=checkbox]{
+            display: none;
+        }
+        font-size: 16px;
+        line-height: 16px;
+        height: 16px;
+        color: @vsuiTextColor;
+        padding: 9px 0;
+        text-align: end;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+
+        &:before{
+            font-family: FontAwesome;
+            display: inline-block;
+            letter-spacing: 10px;
+            content: "\f096";
+
+        }
+        &:checked:before{
+            content: "\f046";
+        }
+
+
+
+    }*/
+    .vsui-input-checkbox{
+
+        font-size: 16px;
+        line-height: 16px;
+        height: 16px;
+        color: @vsuiTextColor;
+        padding: 9px 0;
+        text-align: end;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+    input[type=checkbox]{
+        display: none;
+    }
+    input[type=checkbox] + .vsui-input-checkbox{
+        &:before{
+            width: 1.28571429em;
+            text-align: center;
+            font-family: FontAwesome;
+            display: inline-block;
+            letter-spacing: 10px;
+            content: "\f096";
+        }
+    }
+    input[type=checkbox]:checked + .vsui-input-checkbox{
+        &:before{
+            width: 1.28571429em;
+            text-align: center;
+            font-family: FontAwesome;
+            display: inline-block;
+            letter-spacing: 10px;
+            content: "\f046";
+        }
+    }
 }

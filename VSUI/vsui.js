@@ -93,10 +93,11 @@ function VsuiPicker() {
                          */
                         $("#vsTap2").removeClass('active');
                         $(".vsui-picker").height(26);
-                        $(".vsui-mask.content").fadeOut();
+                        $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
                         setTimeout(function () {
+                            $(".vsui-mask.content").hide();
                             $("#vsui-choose").hide();
-                        },500);
+                        }, 600);
                     }
                     vsTap1 = false;
                 } else {
@@ -115,7 +116,7 @@ function VsuiPicker() {
                         $("#vsui-date").fadeOut();
                         setTimeout(function () {
                             $(".vsui-datePicker").hide();
-                        },500);
+                        }, 600);
 
                         vsTap2 = false;
                     } else {
@@ -129,7 +130,7 @@ function VsuiPicker() {
                         $("#vsTap2").addClass('active');
                         $(".vsui-picker").height(84);
                         //$(".vsui-picker").animate({height: '84px'});
-                        $(".vsui-mask.content").fadeIn();
+                        $(".vsui-mask.content").show().removeClass("vsui-animate-fade-out").addClass("vsui-animate-fade-in");
                     }
                     vsTap1 = true;
                 }
@@ -161,7 +162,7 @@ function VsuiPicker() {
                         setTimeout(function () {
                             $(".vsui-picker__mask").show();
                             $("#vsui-choose").hide();
-                        },500);
+                        }, 600);
                         vsTap1 = false;
                         vsTap2 = true;
                     }
@@ -177,11 +178,13 @@ function VsuiPicker() {
                         $(".vsui-picker__mask").hide();
                         $("#vsTap1").removeClass('active');
                         $(".vsui-picker").height(26);
-                        $(".vsui-mask.content").fadeOut();
+                        $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
+
                         setTimeout(function () {
+                            $(".vsui-mask.content").hide();
                             $("#vsui-date").hide();
                             $(".vsui-datePicker").hide();
-                        },500);
+                        }, 600);
                         vsTap2 = false;
                     } else {
                         /*
@@ -195,10 +198,10 @@ function VsuiPicker() {
                         $(".vsui-datePicker").show();
                         $("#vsTap1").addClass('active');
                         $(".vsui-picker").height(307);
-                        $(".vsui-mask.content").fadeIn();
+                        $(".vsui-mask.content").show().removeClass("vsui-animate-fade-out").addClass("vsui-animate-fade-in");
                         setTimeout(function () {
                             $(".vsui-picker__mask").show();
-                        },500);
+                        }, 500);
                         vsTap2 = true;
                     }
                 }
@@ -216,10 +219,11 @@ function VsuiPicker() {
              */
             $("#vsTap2").removeClass('active');
             $(".vsui-picker").height(26);
-            $(".vsui-mask.content").fadeOut();
+            $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
             setTimeout(function () {
+                $(".vsui-mask.content").hide();
                 $("#vsui-choose").hide();
-            },500);
+            }, 600);
             vsTap1 = false;
         } else if (vsTap2) {
             /*
@@ -228,11 +232,13 @@ function VsuiPicker() {
             $(".vsui-picker__mask").hide();
             $("#vsTap1").removeClass('active');
             $(".vsui-picker").height(26);
-            $(".vsui-mask.content").fadeOut();
+            $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
+
             setTimeout(function () {
+                $(".vsui-mask.content").hide();
                 $("#vsui-date").hide();
                 $(".vsui-datePicker").hide();
-            },500);
+            }, 600);
             vsTap2 = false;
         }
     });
@@ -254,7 +260,7 @@ function VsuiPicker() {
         $(".vsui-mask.content").fadeOut();
         setTimeout(function () {
             $("#vsui-choose").hide();
-        },500);
+        }, 600);
         vsTap1 = false;
     });
     $(".vsui-date-btn").on('click', function () {
@@ -326,11 +332,13 @@ function VsuiPicker() {
         $(".vsui-picker__mask").hide();
         $("#vsTap1").removeClass('active');
         $(".vsui-picker").height(26);
-        $(".vsui-mask.content").fadeOut();
+        $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
+
         setTimeout(function () {
+            $(".vsui-mask.content").hide();
             $("#vsui-date").hide();
             $(".vsui-datePicker").hide();
-        },500);
+        }, 600);
         vsTap2 = false;
     });
 
@@ -346,11 +354,13 @@ function VsuiPicker() {
         $(".vsui-picker__mask").hide();
         $("#vsTap1").removeClass('active');
         $(".vsui-picker").height(26);
-        $(".vsui-mask.content").fadeOut();
+        $(".vsui-mask.content").removeClass("vsui-animate-fade-in").addClass("vsui-animate-fade-out");
+
         setTimeout(function () {
+            $(".vsui-mask.content").hide();
             $("#vsui-date").hide();
             $(".vsui-datePicker").hide();
-        },500);
+        }, 600);
         vsTap2 = false;
     });
 }
@@ -387,19 +397,19 @@ $(document).ready(function () {
         e.preventDefault();
         // location.href = $(this).attr("action") + "?Identity=" + "3123123";
 
-        var action = $(this).attr("action") ? "action='" + $(this).attr("action") + "'" : "";
-        var method = $(this).attr("method") ? "method='" + $(this).attr("method") + "'" : "";
-        var formName = $(this).attr("name") ? "name='" + $(this).attr("name") + "'" : "";
-        var input = $(this).children(".checked").children("input");
+        let action = $(this).attr("action") ? "action='" + $(this).attr("action") + "'" : "";
+        let method = $(this).attr("method") ? "method='" + $(this).attr("method") + "'" : "";
+        let formName = $(this).attr("name") ? "name='" + $(this).attr("name") + "'" : "";
+        let input = $(this).children(".checked").children("input");
         //$('.vsui-radio:checked').val();
-        var name = input.attr("name") ? "name='" + input.attr("name") + "'" : "";
-        var value = $.trim(input.val());
+        let name = input.attr("name") ? "name='" + input.attr("name") + "'" : "";
+        let value = $.trim(input.val());
         if (value.length < 1) {
             return false;
         }
-        var newId = generateMixed(8);
+        let newId = generateMixed(8);
 
-        var html = "<form id='" + newId + "' " + action + " " + method + " " + formName + " style='display:none'>";
+        let html = "<form id='" + newId + "' " + action + " " + method + " " + formName + " style='display:none'>";
         html += "<input type=hidden " + name + " value='" + value + "'/>";
         html += "</form>";
 
@@ -412,10 +422,10 @@ $(document).ready(function () {
 
     //tools
     function generateMixed(n) {
-        var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-        var res = "";
-        for (var i = 0; i < n; i++) {
-            var id = Math.ceil(Math.random() * 15);
+        let chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+        let res = "";
+        for (let i = 0; i < n; i++) {
+            let id = Math.ceil(Math.random() * 15);
             res += chars[id];
         }
         return res;
@@ -424,7 +434,7 @@ $(document).ready(function () {
     //解决输入框输入法遮挡问题
     $("input[type='text']").on('focus', function () {
         //自动反弹 输入法高度自适应
-        var target = this;
+        let target = this;
         setTimeout(function () {
             target.scrollIntoViewIfNeeded();
         }, 200);
@@ -1301,7 +1311,7 @@ function parse(expr, start, end) {
 
 
 let render = function (tpl, data) {
-    const code = 'var p=[];with(this){p.push(\'' +
+    const code = 'let p=[];with(this){p.push(\'' +
         tpl
             .replace(/[\r\t\n]/g, ' ')
             .split('<%').join('\t')
@@ -1341,7 +1351,7 @@ let getStyle = function (el, styleProp) {
         // convert other units to pixels on IE
         if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
             return ((value) => {
-                var oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
+                let oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
                 el.runtimeStyle.left = el.currentStyle.left;
                 el.style.left = value || 0;
                 value = el.style.pixelLeft + 'px';
@@ -1355,7 +1365,7 @@ let getStyle = function (el, styleProp) {
 };
 $.fn.offAll = function () {
     /*this.forEach(($element, index) => {
-     var clone = $element.cloneNode(true);
+     let clone = $element.cloneNode(true);
      $element.parentNode.replaceChild(clone, $element);
 
      this[index] = clone;
