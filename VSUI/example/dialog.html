@@ -3,22 +3,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>Grid</title>
+    <title>Dialog</title>
     <link rel="stylesheet" href="../vsui.css">
     <script src="../jquery.min.js"></script>
     <script src="../vsui.js"></script>
+    <script src="../dialog.js"></script>
 </head>
 <body>
 <div class="vsui-header">
     <div class="vsui-header_title">
-        Grid
+        Dialog
     </div>
     <div class="vsui-header_btn">
         <a href="javascript:;" class="vsui-btn vsui-btn_header">按钮</a>
     </div>
 </div>
 <div class="vsui-content">
-
+    <a href="javascript:;" id="vsDialog" style="margin: 40px auto" class="vsui-btn vsui-btn_blue">Dialog</a>
+    <a href="javascript:;" id="Alert" style="margin: 40px auto" class="vsui-btn vsui-btn_blue">Alert</a>
+    <a href="javascript:;" id="Confirm" style="margin: 40px auto" class="vsui-btn vsui-btn_blue">Confirm</a>
+    <a href="javascript:;" id="Confirm2" style="margin: 40px auto" class="vsui-btn vsui-btn_blue">Confirm2</a>
 
 </div>
 <div class="vsui-footer">
@@ -27,19 +31,54 @@
         <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
     </div>
 </div>
-<div class="vsui-mask fullScreen"></div>
-<div class="vsui-dialog">
 
-    <strong class="vsui-dialog__title">感到十分感动个</strong>
 
-    <div class="vsui-dialog__content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
-    <div class="vsui-dialog__btnTeam">
+<script>
+    $('#vsDialog').on('click', function () {
+        VsuiDialog({
+            title: 'dialog标题',
+            content: 'dialog内容',
+            className: 'vsui-dialog-show',
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function () {
+                    console.log('取消');
+                }
+            }, {
+                label: '确定',
+                type: 'primary',
+                onClick: function () {
+                    console.log('确定');
+                }
+            }]
+        })
+    });
+    $('#Alert').on('click', function () {
+        alert("alert");
+    });
 
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_cancel>">cancel</a>
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_submit>">sumbit</a>
+    $('#Confirm').on('click', function () {
+        confirm('普通的confirm');
+    });
 
-    </div>
-</div>
+    $('#Confirm2').on('click', function () {
+    confirm('自定义按钮的confirm', {
+         title: '自定义按钮的confirm',
+         buttons: [{
+                 label: 'NO',
+                 type: 'default',
+                 onClick: function(){ console.log('no') }
+         }, {
+             label: 'YES',
+             type: 'primary',
+             onClick: function(){ console.log('yes') }
+         }]
+     });
+    });
+
+</script>
+
 
 </body>
 </html>

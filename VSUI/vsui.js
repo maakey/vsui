@@ -365,6 +365,216 @@ function VsuiPicker() {
     });
 }
 
+/**
+ * dialog，弹窗，alert和confirm的父类
+ *
+ * @param {object=} options 配置项
+ * @param {string=} options.title 弹窗的标题
+ * @param {string=} options.content 弹窗的内容
+ * @param {string=} options.className 弹窗的自定义类名
+ * @param {array=} options.buttons 按钮配置项
+ *
+ * @param {string} [options.buttons[].label=确定] 按钮的文字
+ * @param {string} [options.buttons[].type=primary] 按钮的类型 [primary, default]
+ * @param {function} [options.buttons[].onClick=$.noop] 按钮的回调
+ *
+ * @example
+ * VsuiDialog({
+ *     title: 'dialog标题',
+ *     content: 'dialog内容',
+ *     className: 'custom-classname',
+ *     buttons: [{
+ *         label: '取消',
+ *         type: 'default',
+ *         onClick: function () { alert('取消') }
+ *     }, {
+ *         label: '确定',
+ *         type: 'primary',
+ *         onClick: function () { alert('确定') }
+ *     }]
+ * });
+ *
+ * // 主动关闭
+ * var $dialog = VsuiDialog({...});
+ * $dialog.hide(function(){
+ *      console.log('`dialog` has been hidden');
+ * });
+ */
+function VsuiDialog(options = {}) {
+    if (_sington) return _sington;
+
+
+    options = $.extend({
+        title: null,
+        content: '',
+        className: '',
+        buttons: [{
+            label: '确定',
+            type: 'primary',
+            onClick: $.noop
+        }],
+    }, options);
+    let conHtml = "";
+    conHtml = '<div class="' + options.className + '"><div class="vsui-mask fullScreen"></div><div class="vsui-dialog">';
+    if (options.title) {
+        conHtml += '<strong class="vsui-dialog__title">' + options.title + '</strong>';
+    }else{
+        conHtml += '<strong class="vsui-dialog__title"></strong>';
+    }
+    conHtml += '<div class="vsui-dialog__content">' + options.content + '</div>';
+    conHtml += '<div class="vsui-dialog__btnTeam">';
+    for (let i = 0; i < options.buttons.length; i++) {
+        conHtml += '<a href="javascript:;" class="vsui-dialog__btn vsui-dialog__btn_' + options.buttons[i]['type'] + '">' + options.buttons[i]['label'] + '</a>';
+    }
+    conHtml += '</div></div></div>';
+
+
+    const $dialogWrap = $(render(conHtml, options));
+    const $dialog = $dialogWrap.find('.vsui-dialog');
+    const $mask = $dialogWrap.find('.vsui-mask');
+
+    function _hide(callback) {
+        _hide = $.noop; // 防止二次调用导致报错
+
+        $mask.addClass('vsui-animate-fade-out');
+        $dialog
+            .addClass('vsui-animate-fade-out')
+            .on('animationend webkitAnimationEnd', function () {
+                $dialogWrap.remove();
+                _sington = false;
+                callback && callback();
+            });
+    }
+
+    function hide(callback) {
+        _hide(callback);
+    }
+
+    $('body').append($dialogWrap);
+    // 不能直接把.vseui-animate-fade-in加到$dialog，会导致mask的z-index有问题
+    $(".vsui-mask").show();
+    $mask.show().addClass('vsui-animate-fade-in');
+    $dialog.addClass('vsui-animate-fade-in');
+
+    $dialogWrap.on('click', '.vsui-dialog__btn', function (evt) {
+        const index = $(this).index();
+        if (options.buttons[index].onClick) {
+            if (options.buttons[index].onClick.call(this, evt) !== false) hide();
+        } else {
+            hide();
+        }
+    });
+
+    _sington = $dialogWrap[0];
+    _sington.hide = hide;
+    return _sington;
+}
+
+/**
+ * alert 警告弹框，功能类似于浏览器自带的 alert 弹框，用于提醒、警告用户简单扼要的信息，只有一个“确认”按钮，点击“确认”按钮后关闭弹框。
+ * @param {string} content 弹窗内容
+ * @param {function=} yes 点击确定按钮的回调
+ * @param {object=} options 配置项
+ * @param {string=} options.title 弹窗的标题
+ * @param {string=} options.className 自定义类名
+ * @param {array=} options.buttons 按钮配置项，详情参考dialog
+ *
+ * @example
+ * alert('普通的alert');
+ * alert('带回调的alert', function(){ console.log('ok') });
+ * var alertDom = alert('手动关闭的alert', function(){
+ *     return false; // 不关闭弹窗，可用alertDom.hide()来手动关闭
+ * });
+ * alert('自定义标题的alert', { title: '自定义标题' });
+ * alert('带回调的自定义标题的alert', function(){
+ *    console.log('ok')
+ * }, {
+ *    title: '自定义标题'
+ * });
+ * alert('自定义按钮的alert', {
+ *     title: '自定义按钮的alert',
+ *     buttons: [{
+ *         label: 'OK',
+ *         type: 'primary',
+ *         onClick: function(){ console.log('ok') }
+ *     }]
+ * });
+ */
+function alert(content = '', yes = $.noop, options) {
+    if (typeof yes === 'object') {
+        options = yes;
+        yes = $.noop;
+    }
+
+    options = $.extend({
+        content: content,
+        buttons: [{
+            label: '确定',
+            type: 'primary',
+            onClick: yes
+        }]
+    }, options);
+
+    return VsuiDialog(options);
+}
+/**
+ * 确认弹窗
+ * @param {string} content 弹窗内容
+ * @param {function=} yes 点击确定按钮的回调
+ * @param {function=} no  点击取消按钮的回调
+ * @param {object=} options 配置项
+ * @param {string=} options.title 弹窗的标题
+ * @param {string=} options.className 自定义类名
+ * @param {array=} options.buttons 按钮配置项，详情参考dialog
+ *
+ * @example
+ * confirm('普通的confirm');
+ * confirm('自定义标题的confirm', { title: '自定义标题' });
+ * confirm('带回调的confirm', function(){ console.log('yes') }, function(){ console.log('no') });
+ * var confirmDom = confirm('手动关闭的confirm', function(){
+ *     return false; // 不关闭弹窗，可用confirmDom.hide()来手动关闭
+ * });
+ * confirm('带回调的自定义标题的confirm', function(){ console.log('yes') }, function(){ console.log('no') }, {
+ *     title: '自定义标题'
+ * });
+ * confirm('自定义按钮的confirm', {
+ *     title: '自定义按钮的confirm',
+ *     buttons: [{
+ *         label: 'NO',
+ *         type: 'default',
+ *         onClick: function(){ console.log('no') }
+ *     }, {
+ *         label: 'YES',
+ *         type: 'primary',
+ *         onClick: function(){ console.log('yes') }
+ *     }]
+ * });
+ */
+function confirm(content = '', yes = $.noop, no = $.noop, options) {
+    if(typeof yes === 'object'){
+        options = yes;
+        yes = $.noop;
+    }else if(typeof no === 'object'){
+        options = no;
+        no = $.noop;
+    }
+
+    options = $.extend({
+        content: content,
+        buttons: [{
+            label: '取消',
+            type: 'default',
+            onClick: no
+        }, {
+            label: '确定',
+            type: 'primary',
+            onClick: yes
+        }]
+    }, options);
+
+    return VsuiDialog(options);
+}
+
 $(document).ready(function () {
     $(".vsui-header").width($(window).width() - 24);
     $(".vsui-content").width($(window).width() - 24);

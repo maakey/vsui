@@ -31,27 +31,30 @@
     }
     .vsui-dialog__btnTeam{
         position: relative;
-        line-height: 40px;
-        font-size: 18px;
+        line-height: @vsuiDialogButtonHeight;
+        font-size: @vsuiBtn1FontSize;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
         &:after{
-            .setTopLine(#999999)
+            .setTopLine(@vsuiDialogButtonBorderColor)
         }
-        a{
+        .vsui-dialog__btn{
             display: block;
             -webkit-box-flex: 1;
             -webkit-flex: 1;
             flex: 1;
-            color: @vsuiColorPrimary;
             position: relative;
+            color:@vsuiTextColor;
+            &.vsui-dialog__btn_primary{
+                color: @vsuiColorPrimary;
+            }
             .setTapColor();
             &:active{
             background-color: @vsuiBtnWhiteActiveBg;
             }
             &:not(:first-child):after{
-                .setLeftLine(#999999)
+                .setLeftLine(@vsuiDialogButtonBorderColor)
             }
         }
     }
