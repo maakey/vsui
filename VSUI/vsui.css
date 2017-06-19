@@ -1,20 +1,3 @@
-/*
-2017.6.16后半夜想的方案
-@vsuiInputBoxWidth:320px - 12*2;
-@vsuiInputBoxMargin:18px;
-@vsuiInputFontSize:16px;
-@vsuiInputHeight:@vsuiInputBoxMargin+@vsuiInputFontSize;
-@vsuiInputNameWidth:90px;
-
-@vsuiInputTextPaddingBottom:5px;
-
-@vsuiInputNamePaddingTop:@vsuiInputHeight - @vsuiInputFontSize - @vsuiInputTextPaddingBottom;
-@vsuiInputTextValuePaddingTop:@vsuiInputNamePaddingTop - 1;
-@vsuiInputBoxMarginTop:6px;//@vsuiInputBoxMargin - @vsuiInputTextValuePaddingTop;
-
-
-
-}*/
 @import url("../font-awesome/css/font-awesome.min.css");
 html {
   -ms-text-size-adjust: 100%;
@@ -27,6 +10,8 @@ body {
 * {
   margin: 0;
   padding: 0;
+  color: #666666;
+  font-size: 16px;
 }
 a img {
   border: 0;
@@ -756,7 +741,6 @@ a.vsui-panel:active {
 .vsui-picker .vsui-picker-tapGroup {
   bottom: 0;
   position: absolute;
-  background-color: #F7F5F5;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -849,76 +833,9 @@ a.vsui-panel:active {
     opacity: 0;
   }
 }
-/*
-2017.6.16后半夜想的方案
-.vsui-inputBox{
-    width: @vsuiInputBoxWidth;
-    margin: @vsuiInputBoxMarginTop auto;
-    .vsui-input-text{
-        font-size: @vsuiInputFontSize;
-        line-height: @vsuiInputFontSize;
-        height: @vsuiInputHeight;
-        color:@vsuiTextColor;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-
-
-        .name{
-            width:@vsuiInputNameWidth;
-            text-align: end;
-            overflow: hidden;
-            text-overflow:ellipsis;
-            white-space: nowrap;
-            padding: @vsuiInputNamePaddingTop 0 @vsuiInputTextPaddingBottom 0;
-        }
-        .value{
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-            text-align: center;
-            border-width: 0;
-            background: none;
-            padding: @vsuiInputTextValuePaddingTop 0 @vsuiInputTextPaddingBottom 0;
-            font-size: @vsuiInputFontSize;
-            line-height: @vsuiInputFontSize;
-            color:@vsuiTextColor;
-            border-bottom: 1px solid @vsuiBoardColorSecond;
-
-        }
-    }
-}*/
 .vsui-inputBox {
   width: 296px;
-  margin: 9px auto;
-  /*.vsui-input-checkbox{
-        input[type=checkbox]{
-            display: none;
-        }
-        font-size: 16px;
-        line-height: 16px;
-        height: 16px;
-        color: @vsuiTextColor;
-        padding: 9px 0;
-        text-align: end;
-        overflow: hidden;
-        text-overflow:ellipsis;
-        white-space: nowrap;
-
-        &:before{
-            font-family: FontAwesome;
-            display: inline-block;
-            letter-spacing: 10px;
-            content: "\f096";
-
-        }
-        &:checked:before{
-            content: "\f046";
-        }
-
-
-
-    }*/
+  margin: 10px auto;
 }
 .vsui-inputBox .vsui-input-text {
   font-size: 16px;
@@ -928,7 +845,7 @@ a.vsui-panel:active {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  padding: 9px 0;
+  padding: 8px 0;
 }
 .vsui-inputBox .vsui-input-text .name {
   width: 90px;
@@ -952,7 +869,7 @@ a.vsui-panel:active {
 .vsui-inputBox .vsui-input-textarea {
   font-size: 16px;
   line-height: 16px;
-  height: 68px;
+  height: 64px;
   color: #666666;
   display: -webkit-box;
   display: -webkit-flex;
@@ -960,7 +877,7 @@ a.vsui-panel:active {
   position: relative;
 }
 .vsui-inputBox .vsui-input-textarea .name {
-  padding: 9px 0;
+  padding: 8px 0;
   width: 90px;
   text-align: end;
   overflow: hidden;
@@ -974,13 +891,12 @@ a.vsui-panel:active {
   text-align: center;
   border-width: 0;
   background: none;
-  vertical-align: 50px;
   font-size: 16px;
-  line-height: 34px;
-  top: -10px;
-  height: 68px;
+  line-height: 32px;
+  height: 64px;
   resize: none;
   color: #666666;
+  overflow: hidden;
 }
 .vsui-inputBox .vsui-input-textarea:before {
   content: " ";
@@ -992,36 +908,60 @@ a.vsui-panel:active {
   border-top: 2px solid #ededed;
   border-bottom: 2px solid #ededed;
   color: #ededed;
-  transform-origin: 0 50px;
+  transform-origin: 0 48px;
   transform: scaleY(0.5);
 }
 .vsui-inputBox .vsui-input-checkbox {
   font-size: 16px;
   line-height: 16px;
-  height: 16px;
   color: #666666;
-  padding: 9px 0;
-  text-align: end;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 8px 0;
+  text-align: left;
 }
-.vsui-inputBox input[type=checkbox] {
+.vsui-inputBox .vsui-input-checkbox input[type=checkbox] {
   display: none;
 }
-.vsui-inputBox input[type=checkbox] + .vsui-input-checkbox:before {
-  width: 1.28571429em;
-  text-align: center;
+.vsui-inputBox .vsui-input-checkbox input[type=checkbox] + div {
+  width: 16px;
+  padding: 0 10px;
+  flex-shrink: 0;
+}
+.vsui-inputBox .vsui-input-checkbox input[type=checkbox] + div:before {
   font-family: FontAwesome;
-  display: inline-block;
-  letter-spacing: 10px;
   content: "\f096";
 }
-.vsui-inputBox input[type=checkbox]:checked + .vsui-input-checkbox:before {
-  width: 1.28571429em;
-  text-align: center;
-  font-family: FontAwesome;
-  display: inline-block;
-  letter-spacing: 10px;
+.vsui-inputBox .vsui-input-checkbox input[type=checkbox]:checked + div:before {
   content: "\f046";
+}
+.vsui-inputBox .vsui-input-checkbox.middle {
+  justify-content: center;
+  padding: 12px 0;
+  font-size: 20px;
+  line-height: 20px;
+}
+.vsui-inputBox .vsui-input-checkbox.middle input[type=checkbox] + div {
+  width: 20px;
+}
+.vsui-inputBox .vsui-input-checkbox.middle input[type=checkbox] + div:before {
+  font-size: 20px;
+}
+.vsui-inputBox .vsui-input-checkbox.middle p {
+  font-size: 20px;
+}
+.vsui-table {
+  text-align: center;
+}
+.vsui-table table {
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+}
+.vsui-table table td {
+  border: 1px solid #F7F5F5;
+  width: 74px;
+  font-size: 14px;
+  line-height: 19px;
 }

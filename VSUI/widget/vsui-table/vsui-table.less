@@ -1,0 +1,20 @@
+@import "../../base/fn";
+
+.vsui-table {
+    text-align: center;
+
+    table{
+        margin: 0 auto;
+        background-color: @tableBgColor;
+        //border:2px solid @vsuiBgColorDefault;
+        border-collapse:collapse;
+        td{
+            border:1px solid @tableBorderColor;
+            width: (@screenWidthIPhone5 - @vsuiPadMargin*2)/4;
+            font-size:@vsuiTableFontSize;
+            line-height: @vsuiTableFontSize+5;
+        }
+    }
+
+
+}

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>Panel</title>
+    <title>Input</title>
     <link rel="stylesheet" href="../vsui.css">
     <script src="../jquery.min.js"></script>
     <script src="../vsui.js"></script>
@@ -11,7 +11,7 @@
 <body>
 <div class="vsui-header">
     <div class="vsui-header_title">
-        Panel
+        Input
     </div>
     <div class="vsui-header_btn">
         <a href="javascript:;" class="vsui-btn vsui-btn_header">按钮</a>
@@ -26,18 +26,34 @@
         </div>
         <div class="vsui-input-textarea">
             <div class="name">姓名姓名姓名：</div>
-            <textarea rows="2" placeholder="请输入电话"></textarea>
+            <textarea rows="2" maxlength="50" placeholder="请输入电话"></textarea>
         </div>
-        <input id='a' type="checkbox"/>
-        <label for="a" class="vsui-input-checkbox">
-            Checkbox
+        <label class="vsui-input-checkbox" for="a">
+            <input type="checkbox" id="a" checked="checked">
+            <div class="vsui-icon"></div>
+            <p>Checkbox</p>
         </label>
-        <input id='b' type="checkbox" checked="checked"/>
-        <label for="b" class="vsui-input-checkbox">
-            Checkbox
+        <label class="vsui-input-checkbox" for="b">
+            <input type="checkbox" id="b">
+            <div class="vsui-icon"></div>
+            <p>Checkbox</p>
         </label>
 
+        <label class="vsui-input-checkbox middle" for="c">
+            <input type="checkbox" id="c" checked="checked">
+            <div class="vsui-icon"></div>
+            <p>Checkbox</p>
+        </label>
+
+        <label class="vsui-input-checkbox middle" for="d">
+            <input type="checkbox" id="d">
+            <div class="vsui-icon"></div>
+            <p>Checkbox</p>
+        </label>
+
+
     </form>
+    <div>测试</div>
 
 </div>
 <div class="vsui-footer">
