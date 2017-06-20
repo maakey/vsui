@@ -1018,8 +1018,7 @@ a.vsui-panel:active {
 }
 .vsui-dialog .vsui-dialog__btnTeam {
   position: relative;
-  line-height: 40px;
-  font-size: 18px;
+  line-height: 50px;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -1031,8 +1030,8 @@ a.vsui-panel:active {
   top: 0;
   right: 0;
   height: 1px;
-  border-top: 1px solid #999999;
-  color: #999999;
+  border-top: 1px solid #ECECEC;
+  color: #ECECEC;
   transform-origin: 0 0;
   transform: scaleY(0.5);
 }
@@ -1043,6 +1042,7 @@ a.vsui-panel:active {
   flex: 1;
   position: relative;
   color: #666666;
+  font-size: 18px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .vsui-dialog .vsui-dialog__btnTeam .vsui-dialog__btn.vsui-dialog__btn_primary {
@@ -1058,8 +1058,8 @@ a.vsui-panel:active {
   top: 0;
   width: 1px;
   bottom: 0;
-  border-left: 1px solid #999999;
-  color: #999999;
+  border-left: 1px solid #ECECEC;
+  color: #ECECEC;
   transform-origin: 0 0;
   transform: scaleX(0.5);
 }
