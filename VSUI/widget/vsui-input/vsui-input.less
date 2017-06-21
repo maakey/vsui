@@ -3,22 +3,53 @@
 .vsui-inputBox {
     width: @inputBoxWidth;
     margin: @inputBoxMargin;
-    .vsui-input-text {
+}
+
+.vsui-input-text {
+    font-size: @vsuiPrimaryFontSize;
+    line-height: @vsuiPrimaryFontSize;
+    height: @vsuiPrimaryFontSize;
+    color: @vsuiTextColor;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: @inputItemPadding 0;
+    .name {
+        width: @inputNameWidth;
+        text-align: end;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+    input {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+        border-width: 0;
+        background: none;
+
         font-size: @vsuiPrimaryFontSize;
         line-height: @vsuiPrimaryFontSize;
-        height: @vsuiPrimaryFontSize;
         color: @vsuiTextColor;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        padding: @inputItemPadding 0;
-        .name {
-            width: @inputNameWidth;
-            text-align: end;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        border-bottom: 1px solid @vsuiBoardColorSecond;
+    }
+    &.inline {
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 128px;
+        font-size: @inputSmallFontSize;
+        line-height: @inputSmallFontSize;
+        width: 60%;
+        float: left;
+        height: 30px;
+        margin: 0;
 
+        .name {
+            font-size: @inputSmallFontSize;
+            line-height: @inputSmallFontSize;
+            text-align: end;
         }
         input {
             -webkit-box-flex: 1;
@@ -28,136 +59,139 @@
             border-width: 0;
             background: none;
 
-            font-size: @vsuiPrimaryFontSize;
-            line-height: @vsuiPrimaryFontSize;
+            font-size: @inputSmallFontSize;
+            line-height: @inputSmallFontSize;
             color: @vsuiTextColor;
             border-bottom: 1px solid @vsuiBoardColorSecond;
         }
     }
+}
 
-    .vsui-input-textarea {
+.vsui-input-textarea {
+    font-size: @vsuiPrimaryFontSize;
+    line-height: @vsuiPrimaryFontSize;
+    height: (@vsuiPrimaryFontSize+@inputItemPadding*2)*2; //64
+    color: @vsuiTextColor;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+
+    .name {
+        padding: @inputItemPadding 0;
+        width: @inputNameWidth;
+        text-align: end;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+    textarea {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+        border-width: 0;
+        background: none;
+        //vertical-align: 30px;
         font-size: @vsuiPrimaryFontSize;
-        line-height: @vsuiPrimaryFontSize;
-        height: (@vsuiPrimaryFontSize+@inputItemPadding*2)*2;//64
+        line-height: @vsuiPrimaryFontSize+@inputItemPadding*2;
+        //top: @inputItemPadding;
+        height: (@vsuiPrimaryFontSize+@inputItemPadding*2)*2; //64
+        resize: none;
         color: @vsuiTextColor;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        position: relative;
+        overflow: hidden;
 
-        .name {
-            padding: @inputItemPadding 0;
-            width: @inputNameWidth;
-            text-align: end;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        //border-bottom: 1px solid @vsuiBoardColorSecond;
+    }
+    &:before {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: @inputNameWidth;
+        bottom: 0;
+        right: 0;
+        //height: 1px;
+        border-top: 2px solid @vsuiBoardColorSecond;
+        border-bottom: 2px solid @vsuiBoardColorSecond;
+        color: @vsuiBoardColorSecond;
+        transform-origin: 0 (@vsuiPrimaryFontSize+@inputItemPadding*2)+(@vsuiPrimaryFontSize);
+        transform: scaleY(0.5);
+    }
+}
 
+.vsui-input-checkbox {
+
+    font-size: @vsuiPrimaryFontSize;
+    line-height: @vsuiPrimaryFontSize;
+    //height: 16px;
+    color: @vsuiTextColor;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: @inputItemPadding 0;
+    text-align: left;
+
+    input[type=checkbox] {
+        display: none;
+        & + div {
+            width: @vsuiPrimaryFontSize;
+            padding: 0 @inputCheckedIconPadding;
+            flex-shrink: 0;
+
+            &:before {
+                font-family: FontAwesome;
+                content: "\f096";
+            }
         }
-        textarea {
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-            text-align: center;
-            border-width: 0;
-            background: none;
-            //vertical-align: 30px;
-            font-size: @vsuiPrimaryFontSize;
-            line-height: @vsuiPrimaryFontSize+@inputItemPadding*2;
-            //top: @inputItemPadding;
-            height: (@vsuiPrimaryFontSize+@inputItemPadding*2)*2;//64
-            resize: none;
-            color: @vsuiTextColor;
-            overflow: hidden;
-
-            //border-bottom: 1px solid @vsuiBoardColorSecond;
+        &:checked + div {
+            &:before {
+                content: "\f046";
+            }
         }
-        &:before {
-            content: " ";
-            position: absolute;
-            top: 0;
-            left: @inputNameWidth;
-            bottom: 0;
-            right: 0;
-            //height: 1px;
-            border-top: 2px solid @vsuiBoardColorSecond;
-            border-bottom: 2px solid @vsuiBoardColorSecond;
-            color: @vsuiBoardColorSecond;
-            transform-origin: 0 (@vsuiPrimaryFontSize+@inputItemPadding*2)+(@vsuiPrimaryFontSize);
-            transform: scaleY(0.5);
+
+    }
+    &.middle {
+        justify-content: center;
+        padding: @inputBigItemPadding;
+        font-size: @inputBigFontSize;
+        line-height: @inputBigFontSize;
+        input[type=checkbox] {
+            & + div {
+                width: @inputBigFontSize;
+                &:before {
+                    font-size: @inputBigFontSize;
+                }
+            }
+        }
+        p {
+            font-size: @inputBigFontSize;
         }
     }
-
-    .vsui-input-checkbox {
-
-        font-size: @vsuiPrimaryFontSize;
-        line-height: @vsuiPrimaryFontSize;
-        //height: 16px;
-        color: @vsuiTextColor;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        padding: @inputItemPadding 0;
-        text-align: left;
-
+    &.inline {
+        position: relative;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+        font-size: @inputSmallFontSize;
+        line-height: 30px;
+        min-width: 20%;
+        float: left;
+        height: 30px;
+        margin: 0;
         input[type=checkbox] {
-            display: none;
-            & + div{
-                width: @vsuiPrimaryFontSize;
-                padding: 0 @inputCheckedIconPadding;
-                flex-shrink: 0;
-
-                &:before{
-                    font-family: FontAwesome;
-                    content: "\f096";
+            & + div {
+                width: @inputSmallFontSize;
+                padding: 0 @inputCheckedIconPadding/2;
+                &:before {
+                    font-size: @inputSmallFontSize;
+                    line-height: 30px;
                 }
-            }
-            &:checked + div{
-                &:before{
-                    content: "\f046";
-                }
-            }
-
-        }
-        &.middle{
-            justify-content: center;
-            padding: @inputBigItemPadding;
-            font-size: @inputBigFontSize;
-            line-height: @inputBigFontSize;
-            input[type=checkbox] {
-                & + div {
-                    width: @inputBigFontSize;
-                    &:before{
-                        font-size: @inputBigFontSize;
-                    }
-                }
-            }
-            p{
-                font-size:@inputBigFontSize;
             }
         }
-        &.inline{
-            justify-content: flex-start;
-            align-items: center;
-            padding: 0;
+        p {
             font-size: @inputSmallFontSize;
-            line-height: @inputSmallFontSize;
-            width: 20%;
-            float: left;
-            height: 30px;
-            margin: 0;
-            input[type=checkbox] {
-                & + div {
-                    width: @inputSmallFontSize;
-                    padding: 0 @inputCheckedIconPadding/2;
-                    &:before{
-                        font-size: @inputSmallFontSize;
-                    }
-                }
-            }
-            p{
-                font-size:@inputSmallFontSize;
-            }
+            line-height: 30px;
         }
     }
 }
