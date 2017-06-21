@@ -1063,3 +1063,55 @@ a.vsui-panel:active {
   transform-origin: 0 0;
   transform: scaleX(0.5);
 }
+.vsui-prompt {
+  position: fixed;
+  z-index: 1200;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 12px;
+  display: block;
+  background-color: #1195D8;
+}
+.vsui-prompt .vsui-prompt__hd {
+  padding: 17px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #FFFFFF;
+  text-align: center;
+}
+.vsui-prompt .vsui-prompt__bd {
+  position: relative;
+  background-color: #ffffff;
+  margin: 0 20px;
+  border-radius: 6px;
+}
+@media (max-width: 320px) {
+  .vsui-prompt .vsui-prompt__bd {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+.vsui-prompt .vsui-prompt__fd {
+  display: flex;
+  padding: 15px;
+  text-align: center;
+}
+.vsui-prompt:before {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 24px;
+  border: 2px solid #0d67b4;
+}

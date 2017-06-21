@@ -1,0 +1,60 @@
+@import "../../base/fn";
+
+.vsui-prompt {
+    position: fixed;
+    z-index: @vsuiDialogZIndex;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: @vsuiPromptRadius;
+    display: block;
+    background-color: @vsuiBgColorActive;
+
+    .vsui-prompt__hd {
+        padding: @vsuiPromptHDPadding;
+        font-size: @vsuiPromptHDFontSize;
+        line-height: @vsuiPromptHDFontSize;
+        color: @vsuiTextColorWhite;
+        text-align: center;
+    }
+    .vsui-prompt__bd {
+
+        position: relative;
+        background-color: #ffffff;
+
+
+        margin: 0 @vsuiPickerContMargin;
+        @media (max-width: 320px) {
+            margin: 0;
+            border-radius: 0;
+        }
+        //padding: 9px 0;
+        border-radius: @vsuiPromptBDRadius;
+
+    }
+    .vsui-prompt__fd {
+        display: flex;
+        padding: @vsuiPickerDateFDPadding;
+        text-align: center;
+    }
+    &:before {
+        content: " ";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: 24px;
+        border: @vsuiPickerTapBorderWidth solid @vsuiBoardColorPrimary;
+
+    }
+
+}

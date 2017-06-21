@@ -36,13 +36,13 @@
         width: 100%;
         .vsui-btn {
             &:first-child {
-                margin: 0 auto 0 @vsuiPickerContPadding;
+                margin: 0 auto 0 @vsuiPickerContMargin;
                 @media (max-width: 320px) {
                     margin: 0;
                 }
             }
             &:last-child {
-                margin: 0 @vsuiPickerContPadding 0 auto;
+                margin: 0 @vsuiPickerContMargin 0 auto;
                 @media (max-width: 320px) {
                     margin: 0;
                 }
@@ -95,7 +95,7 @@
             background-color: #ffffff;
             height: @vsuiPickerDateItemHeight*@vsuiPickerDateItemCount;
             overflow: hidden;
-            margin: 0 @vsuiPickerContPadding;
+            margin: 0 @vsuiPickerContMargin;
             @media (max-width: 320px) {
                 margin: 0;
                 border-radius:0;
