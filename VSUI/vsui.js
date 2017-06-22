@@ -366,7 +366,7 @@ function VsuiPicker() {
 }
 
 /**
- * dialog，弹窗，alert和confirm的父类
+ * vsuiDialog，弹窗，alert和confirm的父类
  *
  * @param {object=} options 配置项
  * @param {string=} options.title 弹窗的标题
@@ -574,7 +574,213 @@ function confirm(content = '', yes = $.noop, no = $.noop, options) {
 
     return VsuiDialog(options);
 }
+/**
+ * VsuiPrompt，弹窗选择器
+ *
+ * @param {object=} options 配置项
+ * @param {string=} options.title 弹窗的标题
+ * @param {array=} options.input 选项的详细内容
+ * @param {object=} options.more 更多选项及内容
+ * @param {string=} options.className 弹窗的自定义类名
+ * @param {array=} options.buttons 按钮配置项
+ * @param {function} [options.onConfirm=$.noop] 结果的回调
+ *
+ * @param {string} [options.input[].label=红色|请输入文字] 标签
+ * @param {string} [options.input[].type=checkbox|text] 表单项类型，目前只支持checkbox，text
+ * @param {string} [options.input[].name=color|size] 表单项name值
+ * @param {string} [options.input[].value=red] 表单项的值
+ * @param {string} [options.input[].style=color: red] 表单项的css
+ *
+ * @param {string} [options.more.text=添加] 更多选项提示文字
+ * @param {string} [options.more.label=红色|请输入文字] 标签
+ * @param {string} [options.more.type=checkbox|text] 表单项类型，目前只支持checkbox，text
+ * @param {string} [options.more.name=color|size] 表单项name值
+ * @param {string} [options.more.value=red] 表单项的值
+ * @param {string} [options.more.style=color: red] 表单项的css
+ *
+ * @param {string} [options.buttons[].label=确定] 按钮的文字
+ * @param {string} [options.buttons[].type=primary] 按钮的类型 [primary, default]
+ *
+ * @example
+ * VsuiPrompt({
+ *     title: 'VsuiPrompt标题',
+ *     input: [{
+ *         label: '红色',
+ *         type: 'checkbox',
+ *         name: 'color',
+ *         value: 'red'
+ *     }, {
+ *         label: '绿色',
+ *         type: 'checkbox',
+ *         name: 'color',
+ *         value: 'green',
+ *         style: 'color:green'
+ *     }, {
+ *         label: '其他颜色：',
+ *         type: 'text',
+ *         name: 'color',
+ *     }],
+ *     more: {
+ *          text: '更多选择',
+            label: '其他色彩：',
+            type: 'text',
+            name: 'moreColor',
+        },
+ *     className: 'custom-classname',
+ *     buttons: [{
+ *         label: '取消',
+ *         type: 'cancel',
+ *     }, {
+ *         label: '确定',
+ *         type: 'submit',
+ *     }],
+ *     onConfirm(function(result){
+ *         console.log(result);
+ *     })
+ * });
+ *
+ * // 主动关闭
+ * var $prompt = VsuiPrompt({...});
+ * $prompt.hide(function(){
+ *      console.log('`prompt` has been hidden');
+ * });
+ */
+function VsuiPrompt(options = {}) {
+    if (_sington) return _sington;
 
+    options = $.extend({
+        title: null,
+        input: [{
+            label: '红色',
+            type: 'checkbox',
+            name: 'color',
+            value: 'red'
+        }, {
+            label: '绿色',
+            type: 'checkbox',
+            name: 'color',
+            value: 'green',
+            style: 'color:green'
+        }, {
+            label: '其他颜色：',
+            type: 'text',
+            name: 'color',
+        }],
+        more: null,
+        buttons: [{
+            label: '取消',
+            type: 'cancel',
+        },{
+            label: '确定',
+            type: 'submit',
+        }],
+        className: '',
+        onConfirm: $.noop
+    }, options);
+    let conHtml = "";
+    let moreHtml = "";
+    conHtml =
+        '<div class="' + options.className + '">' +
+        '<div class="vsui-mask fullScreen"></div>' +
+        '<div class="vsui-prompt">';
+    if (options.title) {
+        conHtml += '<strong class="vsui-prompt__hd">' + options.title + '</strong>';
+    } else {
+        conHtml += '<strong class="vsui-prompt__hd"></strong>';
+    }
+    conHtml += '<div class="vsui-prompt__bd">';
+    for (let i = 0; i < options.input.length; i++) {
+        if (options.input[i]['type'] === 'checkbox') {
+            conHtml += '<label class="vsui-input-checkbox inline" for="vsPromptId' + i + '"><input type="checkbox" name="' + options.input[i]['name'] + '" id="vsPromptId' + i + '" value="' + options.input[i]['value'] + '"><div class="vsui-icon" style="' + options.input[i]['style'] + '"></div><p style="' + options.input[i]['style'] + '">' + options.input[i]['label'] + '</p></label>';
+        } else if (options.input[i]['type'] === 'text') {
+            conHtml += '<div class="vsui-input-text inline"><div class="name" style="' + options.input[i]['style'] + '">' + options.input[i]['label'] + '</div><input name="' + options.input[i]['name'] + '" type="text" style="' + options.input[i]['style'] + '"></div>';
+        }
+    }
+    if (options.more) {
+        conHtml += '<div class="vsui-prompt-more">'+options.more['text']+'</div>';
+    }
+    conHtml += '</div><div class="vsui-prompt__fd">';
+
+    for (let i = 0; i < options.buttons.length; i++) {
+        conHtml += '<a href="javascript:;" class="vsui-btn vsui-btn__' + options.buttons[i]['type'] + '">' + options.buttons[i]['label'] + '</a>';
+    }
+    conHtml += '</div></div>';
+
+
+    const $promptWrap = $(render(conHtml, options));
+    const $prompt = $promptWrap.find('.vsui-prompt');
+    const $mask = $promptWrap.find('.vsui-mask');
+    function _hide(callback) {
+        _hide = $.noop; // 防止二次调用导致报错
+
+        $mask.addClass('vsui-animate-fade-out');
+        $prompt
+            .addClass('vsui-animate-fade-out')
+            .on('animationend webkitAnimationEnd', function () {
+                $promptWrap.remove();
+                _sington = false;
+                callback && callback();
+            });
+    }
+
+    function hide(callback) {
+        _hide(callback);
+    }
+
+    $('body').append($promptWrap);
+    // 不能直接把.vseui-animate-fade-in加到$dialog，会导致mask的z-index有问题
+    $(".vsui-mask").show();
+    $mask.show().addClass('vsui-animate-fade-in');
+    $prompt.addClass('vsui-animate-fade-in');
+    $('.vsui-btn__submit').on('click', function () {
+        let result = [];
+        $prompt.find('.vsui-input-checkbox').each(function () {
+            if ($(this).children('input').is(':checked')) {
+                result.push({
+                    label: $(this).children('p').html(),
+                    name: $(this).children('input').attr("name"),
+                    type: 'checkbox',
+                    value: $(this).children('input').val(),
+                });
+            }
+        });
+        $prompt.find('.vsui-input-text').each(function () {
+
+            if ($(this).children('input').val() != '') {
+                result.push({
+                    label: $(this).children('.name').html(),
+                    name: $(this).children('input').attr("name"),
+                    type: 'text',
+                    value: $(this).children('input').val(),
+                });
+            }
+        });
+        if(result.length==0){
+            result=null;
+        }
+        options.onConfirm(result);
+        hide();
+    });
+    $('.vsui-btn__cancel').on('click', function () {
+        hide();
+    });
+
+    $('.vsui-prompt-more').on('click', function () {
+        if (options.more['type'] === 'checkbox') {
+            let tempId = generateMixed(6);
+            moreHtml = '<label class="vsui-input-checkbox inline" for="vsPromptId' + tempId + '"><input type="checkbox" name="' + options.more['name'] + '" id="vsPromptId' + tempId + '"><div class="vsui-icon" style="' + options.more['style'] + '"></div><p style="' + options.more['style'] + '">' + options.more['label'] + '</p></label>';
+        } else if (options.more['type'] === 'text') {
+            moreHtml = '<div class="vsui-input-text inline"><div class="name" style="' + options.more['style'] + '">' + options.more['label'] + '</div><input name="' + options.more['name'] + '" type="text" style="' + options.more['style'] + '"></div>';
+        }
+        $(this).before(moreHtml);
+        console.log(options.more);
+    });
+
+
+    _sington = $promptWrap[0];
+    _sington.hide = hide;
+    return _sington;
+}
 $(document).ready(function () {
     $(".vsui-header").width($(window).width() - 24);
     $(".vsui-content").width($(window).width() - 24);
@@ -630,16 +836,7 @@ $(document).ready(function () {
     });
 
 
-    //tools
-    function generateMixed(n) {
-        let chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-        let res = "";
-        for (let i = 0; i < n; i++) {
-            let id = Math.ceil(Math.random() * 15);
-            res += chars[id];
-        }
-        return res;
-    }
+
 
     //解决输入框输入法遮挡问题
     $("input[type='text']").on('focus', function () {
@@ -652,6 +849,16 @@ $(document).ready(function () {
 
 
 });
+//tools
+function generateMixed(n) {
+    let chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    let res = "";
+    for (let i = 0; i < n; i++) {
+        let id = Math.ceil(Math.random() * 15);
+        res += chars[id];
+    }
+    return res;
+}
 
 function Result(item) {
     this.label = item.label;

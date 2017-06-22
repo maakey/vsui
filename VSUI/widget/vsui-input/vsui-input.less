@@ -36,29 +36,33 @@
         border-bottom: 1px solid @vsuiBoardColorSecond;
     }
     &.inline {
-        justify-content: flex-start;
+
         align-items: center;
-        padding: 0 128px;
+        padding: 0;
+        justify-content:center;
         font-size: @inputSmallFontSize;
         line-height: @inputSmallFontSize;
-        width: 60%;
+        width: 50%;
         float: left;
-        height: 30px;
-        margin: 0;
+        height: @promptHeight;
+        margin: 0 auto;
 
         .name {
+            flex-grow:0;
+            width: auto;
             font-size: @inputSmallFontSize;
             line-height: @inputSmallFontSize;
             text-align: end;
         }
         input {
-            -webkit-box-flex: 1;
+/*            -webkit-box-flex: 1;
             -webkit-flex: 1;
-            flex: 1;
+            flex: 1;*/
+            flex-grow:0;
             text-align: center;
             border-width: 0;
             background: none;
-
+            width:80px;
             font-size: @inputSmallFontSize;
             line-height: @inputSmallFontSize;
             color: @vsuiTextColor;
@@ -174,10 +178,10 @@
         align-items: center;
         padding: 0;
         font-size: @inputSmallFontSize;
-        line-height: 30px;
+        line-height: @promptHeight;
         min-width: 20%;
         float: left;
-        height: 30px;
+        height: @promptHeight;
         margin: 0;
         input[type=checkbox] {
             & + div {
@@ -185,13 +189,13 @@
                 padding: 0 @inputCheckedIconPadding/2;
                 &:before {
                     font-size: @inputSmallFontSize;
-                    line-height: 30px;
+                    line-height: @promptHeight;
                 }
             }
         }
         p {
             font-size: @inputSmallFontSize;
-            line-height: 30px;
+            line-height: @inputSmallFontSize;
         }
     }
 }

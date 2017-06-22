@@ -3,58 +3,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>Grid</title>
+    <title>Prompt</title>
     <link rel="stylesheet" href="../vsui.css">
     <script src="../jquery.min.js"></script>
     <script src="../vsui.js"></script>
+    <script src="../prompt.js"></script>
 </head>
 <body>
 <div class="vsui-header">
     <div class="vsui-header_title">
-        Grid
+        Prompt
     </div>
     <div class="vsui-header_btn">
         <a href="javascript:;" class="vsui-btn vsui-btn_header">按钮</a>
     </div>
 </div>
 <div class="vsui-content">
-    <div class="vsui-prompt">
-        <div class="vsui-prompt__hd">biaoti</div>
-        <div class="vsui-prompt__bd">
-            <label class="vsui-input-checkbox inline" for="a">
-                <input type="checkbox" id="a">
-                <div class="vsui-icon"></div>
-                <p>C</p>
-            </label>
-            <label class="vsui-input-checkbox inline" for="a">
-                <input type="checkbox" id="a">
-                <div class="vsui-icon"></div>
-                <p>C</p>
-            </label>
-            <label class="vsui-input-checkbox inline" for="a">
-                <input type="checkbox" id="a">
-                <div class="vsui-icon"></div>
-                <p>C</p>
-            </label>
-            <label class="vsui-input-checkbox inline" for="a">
-                <input type="checkbox" id="a">
-                <div class="vsui-icon"></div>
-                <p>Ch</p>
-            </label><label class="vsui-input-checkbox inline" for="a">
-            <input type="checkbox" id="a">
-            <div class="vsui-icon"></div>
-            <p>C</p>
-        </label>
-            <label class="vsui-input-checkbox inline" for="a">
-                <input type="checkbox" id="a">
-                <div class="vsui-icon"></div>
-                <p>C</p>
-            </label>
-
-        </div>
-
-        <div class="vsui-prompt__fd">123</div>
-    </div>
+    <a id='showPrompt' href="javascript:;" class="vsui-btn vsui-btn_white">prompt</a>
 </div>
 <div class="vsui-footer">
     <div class="vsui-footer-btn-item">
@@ -63,5 +28,41 @@
     </div>
 </div>
 
+<script>
+    $("#showPrompt").on('click',function () {
+        VsuiPrompt({
+            title: '这是标题',
+            input: [{
+                label: '红色',
+                type: 'checkbox',
+                name: 'color',
+                value: 'red'
+            }, {
+                label: '绿色',
+                type: 'checkbox',
+                name: 'color',
+                value: 'green',
+                style: 'color:green'
+            }, {
+                label: '绿色',
+                type: 'checkbox',
+                name: 'color',
+                value: 'green',
+                style: 'color:yellow'
+            }],
+            more: {
+                text: '更多选择',
+                label: '其他色彩：',
+                type: 'text',
+                name: 'moreColor',
+            },
+            className: '',
+            onConfirm: function (a) {
+                console.log(a);
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

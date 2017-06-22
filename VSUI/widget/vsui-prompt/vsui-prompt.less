@@ -5,7 +5,8 @@
     z-index: @vsuiDialogZIndex;
     top: 50%;
     left: 50%;
-    width: 350px;
+    width:92.5%;
+    max-width: @vsuiPromptMaxWidth;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
@@ -18,21 +19,49 @@
         font-size: @vsuiPromptHDFontSize;
         line-height: @vsuiPromptHDFontSize;
         color: @vsuiTextColorWhite;
+        display: block;
         text-align: center;
     }
     .vsui-prompt__bd {
-
+        display: block;
         //position: relative;
-        background-color: #ffffff;
-        //height: auto;
-
+        background-color: @vsuiBgColorDefault;
+        overflow: hidden;
+        height:min-content;
         margin: 0 @vsuiPickerContMargin;
-        @media (max-width: 320px) {
+        @media (max-width: @screenWidthIPhone5) {
             margin: 0;
             border-radius: 0;
         }
         //padding: 9px 0;
         border-radius: @vsuiPromptBDRadius;
+        .vsui-prompt-more{
+            position: relative;
+
+            padding: (@promptHeight - @inputSmallFontSize)/2 0;
+            font-size: @inputSmallFontSize;
+            line-height: @inputSmallFontSize;
+            width: 100%;
+            float: left;
+            height: @inputSmallFontSize;
+            margin: 0;
+            text-align: center;
+            &:before {
+
+                font-family: FontAwesome;
+                content: "\f067";
+                color: @vsuiColorPrimary;
+                border-radius: 9999px;
+                border: 1px solid @vsuiBoardColorSecond;
+                width: 1em;
+
+                position: relative;
+display: inline-block;
+                height: 1em;
+                margin: auto 8px;
+
+            }
+        }
 
     }
     .vsui-prompt__fd {
@@ -40,7 +69,7 @@
         padding: @vsuiPromptFDPadding;
         text-align: center;
     }
-    &:before {
+   /* &:before {
         content: " ";
         width: 200%;
         height: 200%;
@@ -55,6 +84,12 @@
         border-radius: @vsuiPromptRadius*2;
         border: @vsuiPickerTapBorderWidth solid @vsuiBoardColorPrimary;
 
+    }*/
+    @media (max-width: @screenWidthIPhone5) {
+        &:before {
+            display: none;
+        }
+        //border-radius: 0;
     }
 
 }
