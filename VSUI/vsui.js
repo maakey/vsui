@@ -782,6 +782,7 @@ function VsuiPrompt(options = {}) {
     return _sington;
 }
 $(document).ready(function () {
+   // $(document).on('touchstart',function(){},false);
     $(".vsui-header").width($(window).width() - 24);
     $(".vsui-content").width($(window).width() - 24);
     $(".vsui-footer").width($(window).width() - 24);
