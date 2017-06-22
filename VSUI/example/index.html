@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>VsUI</title>
-    <link rel="stylesheet" href="../vsui.css"/>
-    <link rel="stylesheet" href="./example.css"/>
+    <link rel="stylesheet" href="../vsui.css">
+    <script src="../jquery.min.js"></script>
+    <script src="../vsui.js"></script>
+
+    <style>
+        a{
+            height:40px;
+            font-size: 16px;
+            line-height: 40px;
+            color:#1195D8;
+            border-width: 1px 0 1px 0;
+            border-style: solid;
+            border-color: #ededed;
+            display: block;
+            padding-left: 50px;
+            background-color: #F7F5F5;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        a:active{
+            color:#fdfdfd;
+            background-color: #1195D8;
+        }
+    </style>
 </head>
+
 <body ontouchstart>
-    <div class="vsui-toptips weui-toptips_warn js_tooltips">错误提示</div>
+<div class="vsui-header">
+    <div class="vsui-header_title">
+        VSUI
+    </div>
 
-    <div class="container" id="container"></div>
+</div>
+<div class="vsui-content">
+    <a href="button.html">button</a>
+    <a href="dialog.html">dialog</a>
+    <a href="grid.html">grid</a>
+    <a href="input.html">input</a>
+    <a href="panel.html">panel</a>
+    <a href="picker.html">picker</a>
+    <a href="prompt.html">prompt</a>
+    <a href="radioPage.html">radioPage</a>
+    <a href="table.html">table</a>
 
-    <link rel="import" href="./fragment/home.html">
-    <link rel="import" href="button.html">
-    <link rel="import" href="./fragment/list.html">
-    <link rel="import" href="./fragment/input.html">
-    <link rel="import" href="./fragment/toast.html">
-    <link rel="import" href="./fragment/dialog.html">
-    <link rel="import" href="./fragment/progress.html">
-    <link rel="import" href="./fragment/msg.html">
-    <link rel="import" href="./fragment/msg_success.html">
-    <link rel="import" href="./fragment/msg_warn.html">
-    <link rel="import" href="./fragment/article.html">
-    <link rel="import" href="./fragment/navbar.html">
-    <link rel="import" href="./fragment/tabbar.html">
-    <link rel="import" href="panel.html">
-    <link rel="import" href="./fragment/actionsheet.html">
-    <link rel="import" href="./fragment/icons.html">
-    <link rel="import" href="./fragment/searchbar.html">
-    <link rel="import" href="./fragment/picker.html">
-    <link rel="import" href="./fragment/footer.html">
-    <link rel="import" href="./fragment/gallery.html">
-    <link rel="import" href="./fragment/flex.html">
-    <link rel="import" href="./fragment/loadmore.html">
-    <link rel="import" href="./fragment/layers.html">
-    <link rel="import" href="./fragment/uploader.html">
-    <link rel="import" href="./fragment/preview.html">
-    <link rel="import" href="./fragment/grid.html">
-    <link rel="import" href="./fragment/badge.html">
-    <link rel="import" href="./fragment/slider.html">
-    <script src="./zepto.min.js"></script>
-    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
-    <script src="./example.js"></script>
+</div>
+<div class="vsui-footer">
+
+</div>
+
 </body>
 </html>
