@@ -1,8 +1,8 @@
 /**
  * Created by m on 2017/6/2.
  */
-
-;
+//添加触觉反馈
+document.addEventListener('touchstart',function(){},false);
 
 //vsui-picker
 
