@@ -9,8 +9,8 @@ VSUI
 
 需要引用jQuery框架
 ```html
-<link rel="stylesheet" href="./VSUI/vsui.css">
-<script src="./VSUI/vsui.js"></script>
+<link rel="stylesheet" href="./VSUI/vsui.min.css">
+<script src="./VSUI/vsui.min.js"></script>
 
 <script type="text/javascript">
     alert('alert');
