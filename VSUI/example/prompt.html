@@ -28,9 +28,9 @@
 </div>
 
 <script>
-    $("#showPrompt").on('click',function () {
+    $("#showPrompt").on('click', function () {
         VsuiPrompt({
-            title: '这是标题',
+            title: 'VsuiPrompt标题',
             input: [{
                 label: '红色',
                 type: 'checkbox',
@@ -43,11 +43,9 @@
                 value: 'green',
                 style: 'color:green'
             }, {
-                label: '绿色',
-                type: 'checkbox',
+                label: '其他颜色：',
+                type: 'text',
                 name: 'color',
-                value: 'green',
-                style: 'color:yellow'
             }],
             more: {
                 text: '更多选择',
@@ -55,13 +53,19 @@
                 type: 'text',
                 name: 'moreColor',
             },
-            className: '',
-            onConfirm: function (a) {
-                console.log(a);
+            className: 'custom-classname',
+            buttons: [{
+                label: '取消',
+                type: 'cancel',
+            }, {
+                label: '确定',
+                type: 'submit',
+            }],
+            onConfirm: function (result) {
+                console.log(result);
             }
         });
     });
-
 </script>
 </body>
 </html>

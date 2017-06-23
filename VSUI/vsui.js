@@ -9,14 +9,14 @@ document.addEventListener('touchstart',function(){},false);
 /**
  * vsuiPicker 选择器。
  * @param options 配置项
- * @param {string=} [options.tapName1="单据类型"] 按钮标签名称
- * @param {string=} [options.tapName2="日期筛选"] 时间标签名称
- * @param {string=} [options.btnName1="出库单"] 按钮选择器第一个按钮名称
- * @param {string=} [options.btnName2="入库单"] 按钮选择器第二个按钮名称
- * @param {string=} [options.btnName3="全部"] 按钮选择器第三个按钮名称
- * @param {string=} [options.btnDate1="out"] 按钮选择器第一个按钮回调数据
- * @param {string=} [options.btnDate2="in"] 按钮选择器第二个按钮回调数据
- * @param {string=} [options.btnDate3="all"] 按钮选择器第三个按钮回调数据
+ * @param {string=} [options.tapName1="按钮选择器"] 按钮标签名称
+ * @param {string=} [options.tapName2="时间选择器"] 时间标签名称
+ * @param {string=} [options.btnName1="按钮1"] 按钮选择器第一个按钮名称
+ * @param {string=} [options.btnName2="按钮2"] 按钮选择器第二个按钮名称
+ * @param {string=} [options.btnName3="按钮3"] 按钮选择器第三个按钮名称
+ * @param {string=} [options.btnData1="data1"] 按钮选择器第一个按钮回调数据
+ * @param {string=} [options.btnData2="data2"] 按钮选择器第二个按钮回调数据
+ * @param {string=} [options.btnData3="data"] 按钮选择器第三个按钮回调数据
  * @param {function=} [options.onChoose] 按钮选择器回调
  * @param {function=} [options.onConfirm] 时间选择器回调
  *
@@ -28,9 +28,9 @@ document.addEventListener('touchstart',function(){},false);
  *     btnName1: "出库单",
  *     btnName2: "入库单",
  *     btnName3: "全部",
- *     btnDate1: "out",
- *     btnDate2: "in",
- *     btnDate3: "all",
+ *     btnData1: "out",
+ *     btnData2: "in",
+ *     btnData3: "all",
  *     onChoose: function(result){
  *         console.log(result);
  *     },
@@ -44,19 +44,25 @@ document.addEventListener('touchstart',function(){},false);
 function VsuiPicker() {
     const options = arguments[arguments.length - 1];
     const defaults = $.extend({
-        tapName1: "单据类型",
-        tapName2: "日期筛选",
-        btnName1: "出库单",
-        btnName2: "入库单",
-        btnName3: "全部",
-        btnDate1: "out",
-        btnDate2: "in",
-        btnDate3: "all",
+        tapName1: "按钮选择器",
+        tapName2: "时间选择器",
+        btnName1: "按钮1",
+        btnName2: "按钮2",
+        btnName3: "按钮3",
+        btnData1: "data1",
+        btnData2: "data2",
+        btnData3: "data3",
         onChoose: $.noop,
         onConfirm: $.noop,
     }, options);
 
-    let pickerHtml = '<div class="vsui-picker"><div class="vsui-btnPicker" id="vsui-choose" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnDate1 + '">' + defaults.btnName1 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnDate2 + '">' + defaults.btnName2 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnDate3 + '">' + defaults.btnName3 + '</a></div><div class="vsui-btnPicker" id="vsui-date" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="week">七天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="month">三十天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="all">全部</a></div><div class="vsui-datePicker" style="display: none"><div class="vsui-picker__hd">自定义时间</div><div class="vsui-picker__bd"><div class="vsui-picker__middle">至</div></div><div class="vsui-picker__fd"><a href="javascript:;" data-action="select" id="vsui-picker-confirm" class="vsui-btn vsui-btn_blue vsui-picker__action">确定</a></div></div><div class="vsui-picker-tapGroup"><div class="vsui-picker-tap" id="vsTap1">' + defaults.tapName1 + '</div><div class="vsui-picker-tap" id="vsTap2">' + defaults.tapName2 + '</div></div></div><div class="vsui-mask content"></div>';
+    $(".vsui-content").css("padding-top",function(){
+        let int = parseInt($(".vsui-content").css('padding-top'))+26;
+        return int +'px';
+    });
+
+
+    let pickerHtml = '<div class="vsui-picker"><div class="vsui-btnPicker" id="vsui-choose" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData1 + '">' + defaults.btnName1 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData2 + '">' + defaults.btnName2 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData3 + '">' + defaults.btnName3 + '</a></div><div class="vsui-btnPicker" id="vsui-date" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-Data-btn" data-date-data="week">七天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="month">三十天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="all">全部</a></div><div class="vsui-datePicker" style="display: none"><div class="vsui-picker__hd">自定义时间</div><div class="vsui-picker__bd"><div class="vsui-picker__middle">至</div></div><div class="vsui-picker__fd"><a href="javascript:;" data-action="select" id="vsui-picker-confirm" class="vsui-btn vsui-btn_blue vsui-picker__action">确定</a></div></div><div class="vsui-picker-tapGroup"><div class="vsui-picker-tap" id="vsTap1">' + defaults.tapName1 + '</div><div class="vsui-picker-tap" id="vsTap2">' + defaults.tapName2 + '</div></div></div><div class="vsui-mask content"></div>';
 //添加div
     $(".vsui-header").after(pickerHtml);
     //添加时间选择器
@@ -585,11 +591,11 @@ function confirm(content = '', yes = $.noop, no = $.noop, options) {
  * @param {array=} options.buttons 按钮配置项
  * @param {function} [options.onConfirm=$.noop] 结果的回调
  *
- * @param {string} [options.input[].label=红色|请输入文字] 标签
+ * @param {string} [options.input[].label=标签|请输入文字] 标签名称
  * @param {string} [options.input[].type=checkbox|text] 表单项类型，目前只支持checkbox，text
- * @param {string} [options.input[].name=color|size] 表单项name值
- * @param {string} [options.input[].value=red] 表单项的值
- * @param {string} [options.input[].style=color: red] 表单项的css
+ * @param {string} [options.input[].name=label|size] 表单项name值
+ * @param {string} [options.input[].value] 表单项的值
+ * @param {string} [options.input[].style] 表单项的css
  *
  * @param {string} [options.more.text=添加] 更多选项提示文字
  * @param {string} [options.more.label=红色|请输入文字] 标签
@@ -622,10 +628,10 @@ function confirm(content = '', yes = $.noop, no = $.noop, options) {
  *     }],
  *     more: {
  *          text: '更多选择',
-            label: '其他色彩：',
-            type: 'text',
-            name: 'moreColor',
-        },
+ *          label: '其他色彩：',
+ *          type: 'text',
+ *          name: 'moreColor',
+ *      },
  *     className: 'custom-classname',
  *     buttons: [{
  *         label: '取消',
@@ -634,9 +640,9 @@ function confirm(content = '', yes = $.noop, no = $.noop, options) {
  *         label: '确定',
  *         type: 'submit',
  *     }],
- *     onConfirm(function(result){
+ *     onConfirm: function (result) {
  *         console.log(result);
- *     })
+ *      }
  * });
  *
  * // 主动关闭
@@ -651,20 +657,13 @@ function VsuiPrompt(options = {}) {
     options = $.extend({
         title: null,
         input: [{
-            label: '红色',
+            label: '标签',
             type: 'checkbox',
-            name: 'color',
-            value: 'red'
+            name: 'label',
         }, {
-            label: '绿色',
-            type: 'checkbox',
-            name: 'color',
-            value: 'green',
-            style: 'color:green'
-        }, {
-            label: '其他颜色：',
+            label: '文本框',
             type: 'text',
-            name: 'color',
+            name: 'input',
         }],
         more: null,
         buttons: [{

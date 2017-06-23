@@ -19,7 +19,10 @@
 </div>
 
 <div class="vsui-content">
-
+    <a href="javascript:;" class="vsui-btn vsui-btn_white">返回</a>
+    <a href="javascript:;" class="vsui-btn vsui-btn_blue">返回</a>
+    <a href="javascript:;" class="vsui-btn vsui-btn_mini vsui-btn_white">按钮</a>
+    <a href="javascript:;" class="vsui-btn vsui-btn_header">按钮</a>
 </div>
 <div class="vsui-footer">
     <div class="vsui-footer-btn-item">
@@ -37,9 +40,9 @@
      *     btnName1: "出库单",
      *     btnName2: "入库单",
      *     btnName3: "全部",
-     *     btnDate1: "out",
-     *     btnDate2: "in",
-     *     btnDate3: "all",
+     *     btnData1: "out",
+     *     btnData2: "in",
+     *     btnData3: "all",
      *     onChoose: function(result){
      *         console.log(result);
      *     },
@@ -51,20 +54,20 @@
      *
      */
     VsuiPicker({
-        tapName1: "单据类型11",
-        tapName2: "日期筛选22",
-        btnName1: "出库单33",
-        btnName2: "入库单4",
-        btnName3: "全部5",
-        btnDate1: "out6",
-        btnDate2: "in7",
-        btnDate3: "all8",
+        tapName1: "按钮选择器",
+        tapName2: "日期选择器",
+        btnName1: "选项1",
+        btnName2: "选项2",
+        btnName3: "选项3",
+        btnData1: "data1",
+        btnData2: "data2",
+        btnData3: "data3",
         onConfirm: function (startDate, endDate) {
             console.log(startDate);
             console.log(endDate);
         },
-        onChoose: function (startDate) {
-            console.log(startDate);
+        onChoose: function (data) {
+            console.log(data);
         },
     });
 </script>
