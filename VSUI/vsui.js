@@ -57,8 +57,8 @@ function VsuiPicker() {
     }, options);
 
     $(".vsui-content").css("padding-top",function(){
-        let int = parseInt($(".vsui-content").css('padding-top'))+26;
-        return int +'px';
+        let padding = parseInt($(".vsui-content").css('padding-top'))+26;
+        return padding +'px';
     });
 
 

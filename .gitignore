@@ -17,4 +17,7 @@ Thumbs.db
 
 # css files
 VSUI/**/*.css
+VSUI/**/*.map
 !/VSUI/vsui.css
+!/VSUI/vsui.min.css
+!/VSUI/vsui.min.css.map
