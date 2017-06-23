@@ -1,8 +1,20 @@
 /**
+ * Created by m on 2017/6/23.
+ */
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
  * Created by m on 2017/6/2.
  */
+
 //添加触觉反馈
-document.addEventListener('touchstart',function(){},false);
+document.addEventListener('touchstart', function () {}, false);
 
 //vsui-picker
 
@@ -42,8 +54,8 @@ document.addEventListener('touchstart',function(){},false);
  *
  */
 function VsuiPicker() {
-    const options = arguments[arguments.length - 1];
-    const defaults = $.extend({
+    var options = arguments[arguments.length - 1];
+    var defaults = $.extend({
         tapName1: "按钮选择器",
         tapName2: "时间选择器",
         btnName1: "按钮1",
@@ -53,32 +65,32 @@ function VsuiPicker() {
         btnData2: "data2",
         btnData3: "data3",
         onChoose: $.noop,
-        onConfirm: $.noop,
+        onConfirm: $.noop
     }, options);
 
-    $(".vsui-content").css("padding-top",function(){
-        let padding = parseInt($(".vsui-content").css('padding-top'))+26;
-        return padding +'px';
+    $(".vsui-content").css("padding-top", function () {
+        var padding = parseInt($(".vsui-content").css('padding-top')) + 26;
+        return padding + 'px';
     });
 
-
-    let pickerHtml = '<div class="vsui-picker"><div class="vsui-btnPicker" id="vsui-choose" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData1 + '">' + defaults.btnName1 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData2 + '">' + defaults.btnName2 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData3 + '">' + defaults.btnName3 + '</a></div><div class="vsui-btnPicker" id="vsui-date" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-Data-btn" data-date-data="week">七天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="month">三十天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="all">全部</a></div><div class="vsui-datePicker" style="display: none"><div class="vsui-picker__hd">自定义时间</div><div class="vsui-picker__bd"><div class="vsui-picker__middle">至</div></div><div class="vsui-picker__fd"><a href="javascript:;" data-action="select" id="vsui-picker-confirm" class="vsui-btn vsui-btn_blue vsui-picker__action">确定</a></div></div><div class="vsui-picker-tapGroup"><div class="vsui-picker-tap" id="vsTap1">' + defaults.tapName1 + '</div><div class="vsui-picker-tap" id="vsTap2">' + defaults.tapName2 + '</div></div></div><div class="vsui-mask content"></div>';
-//添加div
+    var pickerHtml = '<div class="vsui-picker"><div class="vsui-btnPicker" id="vsui-choose" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData1 + '">' + defaults.btnName1 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData2 + '">' + defaults.btnName2 + '</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-choose-btn" data-btn-data="' + defaults.btnData3 + '">' + defaults.btnName3 + '</a></div><div class="vsui-btnPicker" id="vsui-date" style="display: none"><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-Data-btn" data-date-data="week">七天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="month">三十天</a><a href="javascript:;" class="vsui-btn vsui-btn_blue vsui-date-btn" data-date-data="all">全部</a></div><div class="vsui-datePicker" style="display: none"><div class="vsui-picker__hd">自定义时间</div><div class="vsui-picker__bd"><div class="vsui-picker__middle">至</div></div><div class="vsui-picker__fd"><a href="javascript:;" data-action="select" id="vsui-picker-confirm" class="vsui-btn vsui-btn_blue vsui-picker__action">确定</a></div></div><div class="vsui-picker-tapGroup"><div class="vsui-picker-tap" id="vsTap1">' + defaults.tapName1 + '</div><div class="vsui-picker-tap" id="vsTap2">' + defaults.tapName2 + '</div></div></div><div class="vsui-mask content"></div>';
+    //添加div
     $(".vsui-header").after(pickerHtml);
     //添加时间选择器
-    let startDate = new datePicker({
+    var startDate = new datePicker({
         start: '1989-01-06',
         end: 2020,
-        property: 'start',
+        property: 'start'
     });
-    let endDate = new datePicker({
+    var endDate = new datePicker({
         start: '1993-03-21',
         end: 2020,
-        property: 'end',
+        property: 'end'
     });
 
     //添加picker
-    let vsTap1 = false, vsTap2 = false;
+    var vsTap1 = false,
+        vsTap2 = false;
 
     $(".vsui-picker-tap").on('click', function () {
         switch ($(this).attr("id")) {
@@ -214,7 +226,6 @@ function VsuiPicker() {
                 break;
             default:
 
-
         }
     });
 
@@ -253,9 +264,9 @@ function VsuiPicker() {
      * 添加反馈
      */
     $(".vsui-choose-btn").on('click', function () {
-        let result = {
+        var result = {
             label: $(this).html(),
-            value: $(this).data("btn-data"),
+            value: $(this).data("btn-data")
         };
         defaults.onChoose(new Result(result));
         /*
@@ -270,34 +281,42 @@ function VsuiPicker() {
         vsTap1 = false;
     });
     $(".vsui-date-btn").on('click', function () {
-        let now = new Date();
-        let date, year, month, day, nowYear, nowMonth, nowDay, startDate, endDate;
+        var now = new Date();
+        var date = void 0,
+            year = void 0,
+            month = void 0,
+            day = void 0,
+            nowYear = void 0,
+            nowMonth = void 0,
+            nowDay = void 0,
+            startDate = void 0,
+            endDate = void 0;
         nowYear = {
             label: now.getFullYear(),
-            value: now.getFullYear(),
+            value: now.getFullYear()
         };
         nowMonth = {
             label: now.getMonth() + 1,
-            value: now.getMonth() + 1,
+            value: now.getMonth() + 1
         };
         nowDay = {
             label: now.getDate(),
-            value: now.getDate(),
+            value: now.getDate()
         };
         switch ($(this).data("date-data")) {
             case 'week':
                 date = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
                 year = {
                     label: date.getFullYear(),
-                    value: date.getFullYear(),
+                    value: date.getFullYear()
                 };
                 month = {
                     label: date.getMonth() + 1,
-                    value: date.getMonth() + 1,
+                    value: date.getMonth() + 1
                 };
                 day = {
                     label: date.getDate(),
-                    value: date.getDate(),
+                    value: date.getDate()
                 };
                 startDate = [new Result(year), new Result(month), new Result(day)];
                 endDate = [new Result(nowYear), new Result(nowMonth), new Result(nowDay)];
@@ -306,23 +325,23 @@ function VsuiPicker() {
                 date = new Date(now.getTime() - 30 * 24 * 3600 * 1000);
                 year = {
                     label: date.getFullYear(),
-                    value: date.getFullYear(),
+                    value: date.getFullYear()
                 };
                 month = {
                     label: date.getMonth() + 1,
-                    value: date.getMonth() + 1,
+                    value: date.getMonth() + 1
                 };
                 day = {
                     label: date.getDate(),
-                    value: date.getDate(),
+                    value: date.getDate()
                 };
                 startDate = [new Result(year), new Result(month), new Result(day)];
                 endDate = [new Result(nowYear), new Result(nowMonth), new Result(nowDay)];
                 break;
             default:
-                let all = {
+                var all = {
                     label: 'all',
-                    value: 0,
+                    value: 0
                 };
                 startDate = [new Result(all), new Result(all), new Result(all)];
                 endDate = [new Result(all), new Result(all), new Result(all)];
@@ -406,9 +425,10 @@ function VsuiPicker() {
  *      console.log('`dialog` has been hidden');
  * });
  */
-function VsuiDialog(options = {}) {
-    if (_sington) return _sington;
+function VsuiDialog() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+    if (_sington) return _sington;
 
     options = $.extend({
         title: null,
@@ -418,38 +438,35 @@ function VsuiDialog(options = {}) {
             label: '确定',
             type: 'primary',
             onClick: $.noop
-        }],
+        }]
     }, options);
-    let conHtml = "";
+    var conHtml = "";
     conHtml = '<div class="' + options.className + '"><div class="vsui-mask fullScreen"></div><div class="vsui-dialog">';
     if (options.title) {
         conHtml += '<strong class="vsui-dialog__title">' + options.title + '</strong>';
-    }else{
+    } else {
         conHtml += '<strong class="vsui-dialog__title"></strong>';
     }
     conHtml += '<div class="vsui-dialog__content">' + options.content + '</div>';
     conHtml += '<div class="vsui-dialog__btnTeam">';
-    for (let i = 0; i < options.buttons.length; i++) {
+    for (var i = 0; i < options.buttons.length; i++) {
         conHtml += '<a href="javascript:;" class="vsui-dialog__btn vsui-dialog__btn_' + options.buttons[i]['type'] + '">' + options.buttons[i]['label'] + '</a>';
     }
     conHtml += '</div></div></div>';
 
-
-    const $dialogWrap = $(render(conHtml, options));
-    const $dialog = $dialogWrap.find('.vsui-dialog');
-    const $mask = $dialogWrap.find('.vsui-mask');
+    var $dialogWrap = $(render(conHtml, options));
+    var $dialog = $dialogWrap.find('.vsui-dialog');
+    var $mask = $dialogWrap.find('.vsui-mask');
 
     function _hide(callback) {
         _hide = $.noop; // 防止二次调用导致报错
 
         $mask.addClass('vsui-animate-fade-out');
-        $dialog
-            .addClass('vsui-animate-fade-out')
-            .on('animationend webkitAnimationEnd', function () {
-                $dialogWrap.remove();
-                _sington = false;
-                callback && callback();
-            });
+        $dialog.addClass('vsui-animate-fade-out').on('animationend webkitAnimationEnd', function () {
+            $dialogWrap.remove();
+            _sington = false;
+            callback && callback();
+        });
     }
 
     function hide(callback) {
@@ -463,7 +480,7 @@ function VsuiDialog(options = {}) {
     $dialog.addClass('vsui-animate-fade-in');
 
     $dialogWrap.on('click', '.vsui-dialog__btn', function (evt) {
-        const index = $(this).index();
+        var index = $(this).index();
         if (options.buttons[index].onClick) {
             if (options.buttons[index].onClick.call(this, evt) !== false) hide();
         } else {
@@ -506,8 +523,12 @@ function VsuiDialog(options = {}) {
  *     }]
  * });
  */
-function alert(content = '', yes = $.noop, options) {
-    if (typeof yes === 'object') {
+function alert() {
+    var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var yes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : $.noop;
+    var options = arguments[2];
+
+    if ((typeof yes === "undefined" ? "undefined" : _typeof(yes)) === 'object') {
         options = yes;
         yes = $.noop;
     }
@@ -556,11 +577,16 @@ function alert(content = '', yes = $.noop, options) {
  *     }]
  * });
  */
-function confirm(content = '', yes = $.noop, no = $.noop, options) {
-    if(typeof yes === 'object'){
+function confirm() {
+    var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var yes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : $.noop;
+    var no = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : $.noop;
+    var options = arguments[3];
+
+    if ((typeof yes === "undefined" ? "undefined" : _typeof(yes)) === 'object') {
         options = yes;
         yes = $.noop;
-    }else if(typeof no === 'object'){
+    } else if ((typeof no === "undefined" ? "undefined" : _typeof(no)) === 'object') {
         options = no;
         no = $.noop;
     }
@@ -651,7 +677,9 @@ function confirm(content = '', yes = $.noop, no = $.noop, options) {
  *      console.log('`prompt` has been hidden');
  * });
  */
-function VsuiPrompt(options = {}) {
+function VsuiPrompt() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
     if (_sington) return _sington;
 
     options = $.extend({
@@ -659,36 +687,33 @@ function VsuiPrompt(options = {}) {
         input: [{
             label: '标签',
             type: 'checkbox',
-            name: 'label',
+            name: 'label'
         }, {
             label: '文本框',
             type: 'text',
-            name: 'input',
+            name: 'input'
         }],
         more: null,
         buttons: [{
             label: '取消',
-            type: 'cancel',
-        },{
+            type: 'cancel'
+        }, {
             label: '确定',
-            type: 'submit',
+            type: 'submit'
         }],
         className: '',
         onConfirm: $.noop
     }, options);
-    let conHtml = "";
-    let moreHtml = "";
-    conHtml =
-        '<div class="' + options.className + '">' +
-        '<div class="vsui-mask fullScreen"></div>' +
-        '<div class="vsui-prompt">';
+    var conHtml = "";
+    var moreHtml = "";
+    conHtml = '<div class="' + options.className + '">' + '<div class="vsui-mask fullScreen"></div>' + '<div class="vsui-prompt">';
     if (options.title) {
         conHtml += '<strong class="vsui-prompt__hd">' + options.title + '</strong>';
     } else {
         conHtml += '<strong class="vsui-prompt__hd"></strong>';
     }
     conHtml += '<div class="vsui-prompt__bd">';
-    for (let i = 0; i < options.input.length; i++) {
+    for (var i = 0; i < options.input.length; i++) {
         if (options.input[i]['type'] === 'checkbox') {
             conHtml += '<label class="vsui-input-checkbox inline" for="vsPromptId' + i + '"><input type="checkbox" name="' + options.input[i]['name'] + '" id="vsPromptId' + i + '" value="' + options.input[i]['value'] + '"><div class="vsui-icon" style="' + options.input[i]['style'] + '"></div><p style="' + options.input[i]['style'] + '">' + options.input[i]['label'] + '</p></label>';
         } else if (options.input[i]['type'] === 'text') {
@@ -696,30 +721,27 @@ function VsuiPrompt(options = {}) {
         }
     }
     if (options.more) {
-        conHtml += '<div class="vsui-prompt-more">'+options.more['text']+'</div>';
+        conHtml += '<div class="vsui-prompt-more">' + options.more['text'] + '</div>';
     }
     conHtml += '</div><div class="vsui-prompt__fd">';
 
-    for (let i = 0; i < options.buttons.length; i++) {
-        conHtml += '<a href="javascript:;" class="vsui-btn vsui-btn__' + options.buttons[i]['type'] + '">' + options.buttons[i]['label'] + '</a>';
+    for (var _i = 0; _i < options.buttons.length; _i++) {
+        conHtml += '<a href="javascript:;" class="vsui-btn vsui-btn__' + options.buttons[_i]['type'] + '">' + options.buttons[_i]['label'] + '</a>';
     }
     conHtml += '</div></div>';
 
-
-    const $promptWrap = $(render(conHtml, options));
-    const $prompt = $promptWrap.find('.vsui-prompt');
-    const $mask = $promptWrap.find('.vsui-mask');
+    var $promptWrap = $(render(conHtml, options));
+    var $prompt = $promptWrap.find('.vsui-prompt');
+    var $mask = $promptWrap.find('.vsui-mask');
     function _hide(callback) {
         _hide = $.noop; // 防止二次调用导致报错
 
         $mask.addClass('vsui-animate-fade-out');
-        $prompt
-            .addClass('vsui-animate-fade-out')
-            .on('animationend webkitAnimationEnd', function () {
-                $promptWrap.remove();
-                _sington = false;
-                callback && callback();
-            });
+        $prompt.addClass('vsui-animate-fade-out').on('animationend webkitAnimationEnd', function () {
+            $promptWrap.remove();
+            _sington = false;
+            callback && callback();
+        });
     }
 
     function hide(callback) {
@@ -732,14 +754,14 @@ function VsuiPrompt(options = {}) {
     $mask.show().addClass('vsui-animate-fade-in');
     $prompt.addClass('vsui-animate-fade-in');
     $('.vsui-btn__submit').on('click', function () {
-        let result = [];
+        var result = [];
         $prompt.find('.vsui-input-checkbox').each(function () {
             if ($(this).children('input').is(':checked')) {
                 result.push({
                     label: $(this).children('p').html(),
                     name: $(this).children('input').attr("name"),
                     type: 'checkbox',
-                    value: $(this).children('input').val(),
+                    value: $(this).children('input').val()
                 });
             }
         });
@@ -750,12 +772,12 @@ function VsuiPrompt(options = {}) {
                     label: $(this).children('.name').html(),
                     name: $(this).children('input').attr("name"),
                     type: 'text',
-                    value: $(this).children('input').val(),
+                    value: $(this).children('input').val()
                 });
             }
         });
-        if(result.length==0){
-            result=null;
+        if (result.length == 0) {
+            result = null;
         }
         options.onConfirm(result);
         hide();
@@ -766,7 +788,7 @@ function VsuiPrompt(options = {}) {
 
     $('.vsui-prompt-more').on('click', function () {
         if (options.more['type'] === 'checkbox') {
-            let tempId = generateMixed(6);
+            var tempId = generateMixed(6);
             moreHtml = '<label class="vsui-input-checkbox inline" for="vsPromptId' + tempId + '"><input type="checkbox" name="' + options.more['name'] + '" id="vsPromptId' + tempId + '"><div class="vsui-icon" style="' + options.more['style'] + '"></div><p style="' + options.more['style'] + '">' + options.more['label'] + '</p></label>';
         } else if (options.more['type'] === 'text') {
             moreHtml = '<div class="vsui-input-text inline"><div class="name" style="' + options.more['style'] + '">' + options.more['label'] + '</div><input name="' + options.more['name'] + '" type="text" style="' + options.more['style'] + '"></div>';
@@ -775,86 +797,73 @@ function VsuiPrompt(options = {}) {
         console.log(options.more);
     });
 
-
     _sington = $promptWrap[0];
     _sington.hide = hide;
     return _sington;
 }
 $(document).ready(function () {
-   // $(document).on('touchstart',function(){},false);
+    // $(document).on('touchstart',function(){},false);
     $(".vsui-header").width($(window).width() - 24);
     $(".vsui-content").width($(window).width() - 24);
     $(".vsui-footer").width($(window).width() - 24);
     $(".vsui-picker").width($(window).width() - 24);
 
-
     //vsui-radioPage
     $(".vsui-radio input[type='radio']").on('click', function () {
-        $(".vsui-radio").each(
-            function () {
-                $(this).removeClass("checked");
-            });
+        $(".vsui-radio").each(function () {
+            $(this).removeClass("checked");
+        });
         $(".vsui-radio-input").removeClass("checked");
-        $(".vsui-radio input:checked").each(
-            function () {
-                $(this).parent("label").addClass("checked");
-            });
+        $(".vsui-radio input:checked").each(function () {
+            $(this).parent("label").addClass("checked");
+        });
     });
     $(".vsui-radio-input input[type='text']").on('click', function () {
-        $(".vsui-radio").each(
-            function () {
-                $(this).removeClass("checked");
-            });
+        $(".vsui-radio").each(function () {
+            $(this).removeClass("checked");
+        });
         $(".vsui-radio-input").addClass("checked");
     });
-
 
     $("form.vsui-radioPage").submit(function (e) {
         e.preventDefault();
         // location.href = $(this).attr("action") + "?Identity=" + "3123123";
 
-        let action = $(this).attr("action") ? "action='" + $(this).attr("action") + "'" : "";
-        let method = $(this).attr("method") ? "method='" + $(this).attr("method") + "'" : "";
-        let formName = $(this).attr("name") ? "name='" + $(this).attr("name") + "'" : "";
-        let input = $(this).children(".checked").children("input");
+        var action = $(this).attr("action") ? "action='" + $(this).attr("action") + "'" : "";
+        var method = $(this).attr("method") ? "method='" + $(this).attr("method") + "'" : "";
+        var formName = $(this).attr("name") ? "name='" + $(this).attr("name") + "'" : "";
+        var input = $(this).children(".checked").children("input");
         //$('.vsui-radio:checked').val();
-        let name = input.attr("name") ? "name='" + input.attr("name") + "'" : "";
-        let value = $.trim(input.val());
+        var name = input.attr("name") ? "name='" + input.attr("name") + "'" : "";
+        var value = $.trim(input.val());
         if (value.length < 1) {
             return false;
         }
-        let newId = generateMixed(8);
+        var newId = generateMixed(8);
 
-        let html = "<form id='" + newId + "' " + action + " " + method + " " + formName + " style='display:none'>";
+        var html = "<form id='" + newId + "' " + action + " " + method + " " + formName + " style='display:none'>";
         html += "<input type=hidden " + name + " value='" + value + "'/>";
         html += "</form>";
 
         $(this).after(html);
         $("#" + newId).submit();
-
-
     });
-
-
-
 
     //解决输入框输入法遮挡问题
     $("input[type='text']").on('focus', function () {
         //自动反弹 输入法高度自适应
-        let target = this;
+        var target = this;
         setTimeout(function () {
             target.scrollIntoViewIfNeeded();
         }, 200);
     });
-
-
 });
 //tools
 function generateMixed(n) {
-    let chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-    let res = "";
-    for (let i = 0; i < n; i++) {
-        let id = Math.ceil(Math.random() * 15);
+    var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    var res = "";
+    for (var i = 0; i < n; i++) {
+        var id = Math.ceil(Math.random() * 15);
         res += chars[id];
     }
     return res;
@@ -871,8 +880,8 @@ Result.prototype.valueOf = function () {
     return this.value;
 };
 
-let _sington;
-let temp = {}; // temp 存在上一次滑动的位置
+var _sington = void 0;
+var temp = {}; // temp 存在上一次滑动的位置
 
 /**
  * picker 多列选择器。
@@ -1021,8 +1030,8 @@ function picker() {
     //  if (_sington) return _sington;
 
     // 配置项
-    const options = arguments[arguments.length - 1];
-    const defaults = $.extend({
+    var options = arguments[arguments.length - 1];
+    var defaults = $.extend({
         id: 'default',
         className: '',
         container: 'body',
@@ -1031,10 +1040,10 @@ function picker() {
     }, options);
 
     // 数据处理
-    let items;
-    let isMulti = false; // 是否多列的类型
+    var items = void 0;
+    var isMulti = false; // 是否多列的类型
     if (arguments.length > 2) {
-        let i = 0;
+        var i = 0;
         items = [];
         while (i < arguments.length - 1) {
             items.push(arguments[i++]);
@@ -1046,10 +1055,11 @@ function picker() {
 
     // 获取缓存
     temp[defaults.id] = temp[defaults.id] || [];
-    const result = [];
-    const lineTemp = temp[defaults.id];
-    const $picker = $(render('<div class="vsui-picker__dateItem"></div>', defaults));
-    let depth = options.depth || (isMulti ? items.length : depthOf(items[0])), groups = '';
+    var result = [];
+    var lineTemp = temp[defaults.id];
+    var $picker = $(render('<div class="vsui-picker__dateItem"></div>', defaults));
+    var depth = options.depth || (isMulti ? items.length : depthOf(items[0])),
+        groups = '';
 
     // 显示与隐藏的方法
     function show() {
@@ -1088,8 +1098,9 @@ function picker() {
     function scroll(items, level) {
         if (lineTemp[level] === undefined && defaults.defaultValue && defaults.defaultValue[level] !== undefined) {
             // 没有缓存选项，而且存在defaultValue
-            const defaultVal = defaults.defaultValue[level];
-            let index = 0, len = items.length;
+            var defaultVal = defaults.defaultValue[level];
+            var index = 0,
+                len = items.length;
 
             for (; index < len; ++index) {
                 if (defaultVal == items[index].value) break;
@@ -1103,7 +1114,7 @@ function picker() {
         $picker.find('.vsui-picker__group').eq(level).scroll({
             items: items,
             temp: lineTemp[level],
-            onChange: function (item, index) {
+            onChange: function onChange(item, index) {
                 //为当前的result赋值。
                 if (item) {
                     result[level] = new Result(item);
@@ -1146,16 +1157,14 @@ function picker() {
         });
     }
 
-
     groups = '<div class="vsui-picker__group x4">            <div class="vsui-picker__mask"></div>        <div class="vsui-picker__indicator"></div>        <div class="vsui-picker__content"></div>        </div> <div class="vsui-picker__group x2">        <div class="vsui-picker__mask"></div>        <div class="vsui-picker__indicator"></div>        <div class="vsui-picker__content"></div>        </div>        <div class="vsui-picker__group x2">        <div class="vsui-picker__mask"></div>        <div class="vsui-picker__indicator"></div>        <div class="vsui-picker__content"></div>        </div>';
-
 
     //$picker.find('.vsui-picker__dateItem').html(groups);
     $picker.html(groups);
     show();
 
     if (isMulti) {
-        items.forEach((item, index) => {
+        items.forEach(function (item, index) {
             scroll(item, index);
         });
     } else {
@@ -1245,7 +1254,7 @@ function picker() {
  *  });
  */
 function datePicker(options) {
-    const defaults = $.extend({
+    var defaults = $.extend({
         id: 'datePicker',
         onChange: $.noop,
         onConfirm: $.noop,
@@ -1258,38 +1267,36 @@ function datePicker(options) {
 
     // 兼容原来的 start、end 传 Number 的用法
     if (typeof defaults.start === 'number') {
-        defaults.start = new Date(`${defaults.start}-01-01`);
-    }
-    else if (typeof defaults.start === 'string') {
+        defaults.start = new Date(defaults.start + "-01-01");
+    } else if (typeof defaults.start === 'string') {
         defaults.start = new Date(defaults.start);
     }
     if (typeof defaults.end === 'number') {
-        defaults.end = new Date(`${defaults.end}-12-31`);
-    }
-    else if (typeof defaults.end === 'string') {
+        defaults.end = new Date(defaults.end + "-12-31");
+    } else if (typeof defaults.end === 'string') {
         defaults.end = new Date(defaults.end);
     }
 
-    const findBy = (array, key, value) => {
-        for (let i = 0, len = array.length; i < len; i++) {
-            const obj = array[i];
-            if (obj[key] == value) {
-                return obj;
+    var findBy = function findBy(array, key, value) {
+        for (var i = 0, len = array.length; i < len; i++) {
+            var _obj = array[i];
+            if (_obj[key] == value) {
+                return _obj;
             }
         }
     };
 
-    const date = [];
-    const interval = parse(defaults.cron, defaults.start, defaults.end);
-    let obj;
+    var date = [];
+    var interval = parse(defaults.cron, defaults.start, defaults.end);
+    var obj = void 0;
     do {
         obj = interval.next();
 
-        const year = obj.value.getFullYear();
-        const month = obj.value.getMonth() + 1;
-        const day = obj.value.getDate();
+        var year = obj.value.getFullYear();
+        var month = obj.value.getMonth() + 1;
+        var day = obj.value.getDate();
 
-        let Y = findBy(date, 'value', year);
+        var Y = findBy(date, 'value', year);
         if (!Y) {
             Y = {
                 label: year,
@@ -1298,7 +1305,7 @@ function datePicker(options) {
             };
             date.push(Y);
         }
-        let M = findBy(Y.children, 'value', month);
+        var M = findBy(Y.children, 'value', month);
         if (!M) {
             M = {
                 label: String(month).length == 2 ? String(month) : '0' + month,
@@ -1311,10 +1318,7 @@ function datePicker(options) {
             label: String(day).length == 2 ? String(day) : '0' + day,
             value: day
         });
-
-
-    }
-    while (!obj.done);
+    } while (!obj.done);
 
     return new picker(date, defaults);
 }
@@ -1324,21 +1328,20 @@ function datePicker(options) {
  * @param $target
  * @param time
  */
-const setTransition = ($target, time) => {
+var setTransition = function setTransition($target, time) {
     return $target.css({
-        '-webkit-transition': `all ${time}s`,
-        'transition': `all ${time}s`
+        '-webkit-transition': "all " + time + "s",
+        'transition': "all " + time + "s"
     });
 };
-
 
 /**
  * set translate
  */
-const setTranslate = ($target, diff) => {
+var setTranslate = function setTranslate($target, diff) {
     return $target.css({
-        '-webkit-transform': `translate3d(0, ${diff}px, 0)`,
-        'transform': `translate3d(0, ${diff}px, 0)`
+        '-webkit-transform': "translate3d(0, " + diff + "px, 0)",
+        'transform': "translate3d(0, " + diff + "px, 0)"
     });
 };
 
@@ -1347,9 +1350,9 @@ const setTranslate = ($target, diff) => {
  * @param items
  * @returns {number}
  */
-const getDefaultIndex = (items) => {
-    let current = Math.floor(items.length / 2);
-    let count = 0;
+var getDefaultIndex = function getDefaultIndex(items) {
+    var current = Math.floor(items.length / 2);
+    var count = 0;
     while (!!items[current] && items[current].disabled) {
         current = ++current % items.length;
         count++;
@@ -1362,8 +1365,8 @@ const getDefaultIndex = (items) => {
     return current;
 };
 
-const getDefaultTranslate = (offset, rowHeight, items) => {
-    const currentIndex = getDefaultIndex(items);
+var getDefaultTranslate = function getDefaultTranslate(offset, rowHeight, items) {
+    var currentIndex = getDefaultIndex(items);
 
     return (offset - currentIndex) * rowHeight;
 };
@@ -1374,7 +1377,7 @@ const getDefaultTranslate = (offset, rowHeight, items) => {
  * @param rowHeight
  * @returns {number}
  */
-const getMax = (offset, rowHeight) => {
+var getMax = function getMax(offset, rowHeight) {
     return offset * rowHeight;
 };
 
@@ -1385,55 +1388,57 @@ const getMax = (offset, rowHeight) => {
  * @param length
  * @returns {number}
  */
-const getMin = (offset, rowHeight, length) => {
+var getMin = function getMin(offset, rowHeight, length) {
     return -(rowHeight * (length - offset - 1));
 };
 
 $.fn.scroll = function (options) {
-    const defaults = $.extend({
-        items: [],                                  // 数据
-        scrollable: '.vsui-picker__content',        // 滚动的元素
-        offset: 1,                                  // 列表初始化时的偏移量（列表初始化时，选项是聚焦在中间的，通过offset强制往上挪3项，以达到初始选项是为顶部的那项）
-        rowHeight: 34,                              // 列表每一行的高度
-        onChange: $.noop,                           // onChange回调
-        temp: null,                                 // translate的缓存
-        bodyHeight: 3 * 34                          // picker的高度，用于辅助点击滚动的计算
+    var _this = this;
+
+    var defaults = $.extend({
+        items: [], // 数据
+        scrollable: '.vsui-picker__content', // 滚动的元素
+        offset: 1, // 列表初始化时的偏移量（列表初始化时，选项是聚焦在中间的，通过offset强制往上挪3项，以达到初始选项是为顶部的那项）
+        rowHeight: 34, // 列表每一行的高度
+        onChange: $.noop, // onChange回调
+        temp: null, // translate的缓存
+        bodyHeight: 3 * 34 // picker的高度，用于辅助点击滚动的计算
     }, options);
-    const items = defaults.items.map((item) => {
-        return `<div class="vsui-picker__item${item.disabled ? ' vsui-picker__item_disabled' : ''}">${item.label}</div>`;
+    var items = defaults.items.map(function (item) {
+        return "<div class=\"vsui-picker__item" + (item.disabled ? ' vsui-picker__item_disabled' : '') + "\">" + item.label + "</div>";
     }).join('');
-    const $this = $(this);
+    var $this = $(this);
 
     $this.find('.vsui-picker__content').html(items);
 
-    let $scrollable = $this.find(defaults.scrollable);        // 可滚动的元素
-    let start;                                                  // 保存开始按下的位置
-    let end;                                                    // 保存结束时的位置
-    let startTime;                                              // 开始触摸的时间
-    let translate;                                              // 缓存 translate
-    const points = [];                                          // 记录移动点
-    const windowHeight = window.innerHeight;                    // 屏幕的高度
+    var $scrollable = $this.find(defaults.scrollable); // 可滚动的元素
+    var start = void 0; // 保存开始按下的位置
+    var end = void 0; // 保存结束时的位置
+    var startTime = void 0; // 开始触摸的时间
+    var translate = void 0; // 缓存 translate
+    var points = []; // 记录移动点
+    var windowHeight = window.innerHeight; // 屏幕的高度
 
     // 首次触发选中事件
     // 如果有缓存的选项，则用缓存的选项，否则使用中间值。
     if (defaults.temp !== null && defaults.temp < defaults.items.length) {
-        const index = defaults.temp;
+        var index = defaults.temp;
         defaults.onChange.call(this, defaults.items[index], index);
         translate = (defaults.offset - index) * defaults.rowHeight;
     } else {
-        const index = getDefaultIndex(defaults.items);
-        defaults.onChange.call(this, defaults.items[index], index);
+        var _index = getDefaultIndex(defaults.items);
+        defaults.onChange.call(this, defaults.items[_index], _index);
         translate = getDefaultTranslate(defaults.offset, defaults.rowHeight, defaults.items);
     }
     setTranslate($scrollable, translate);
 
-    const stop = (diff) => {
+    var stop = function stop(diff) {
         translate += diff;
 
         // 移动到最接近的那一行
         translate = Math.round(translate / defaults.rowHeight) * defaults.rowHeight;
-        const max = getMax(defaults.offset, defaults.rowHeight);
-        const min = getMin(defaults.offset, defaults.rowHeight, defaults.items.length);
+        var max = getMax(defaults.offset, defaults.rowHeight);
+        var min = getMin(defaults.offset, defaults.rowHeight, defaults.items.length);
         // 不要超过最大值或者最小值
         if (translate > max) {
             translate = max;
@@ -1443,7 +1448,7 @@ $.fn.scroll = function (options) {
         }
 
         // 如果是 disabled 的就跳过
-        let index = defaults.offset - translate / defaults.rowHeight;
+        var index = defaults.offset - translate / defaults.rowHeight;
         while (!!defaults.items[index] && defaults.items[index].disabled) {
             diff > 0 ? ++index : --index;
         }
@@ -1452,7 +1457,7 @@ $.fn.scroll = function (options) {
         setTranslate($scrollable, translate);
 
         // 触发选择事件
-        defaults.onChange.call(this, defaults.items[index], index);
+        defaults.onChange.call(_this, defaults.items[index], index);
     };
 
     function _start(pageY) {
@@ -1462,12 +1467,12 @@ $.fn.scroll = function (options) {
 
     function _move(pageY) {
         end = pageY;
-        const diff = end - start;
+        var diff = end - start;
 
         setTransition($scrollable, 0);
-        setTranslate($scrollable, (translate + diff));
+        setTranslate($scrollable, translate + diff);
         startTime = +new Date();
-        points.push({time: startTime, y: end});
+        points.push({ time: startTime, y: end });
         if (points.length > 40) {
             points.shift();
         }
@@ -1484,8 +1489,8 @@ $.fn.scroll = function (options) {
          *    如果间隔时间在 100ms 内, 查找 100ms 内最近的那个点, 和松开手时的那个点, 计算距离和时间差, 算出速度
          *    速度乘以惯性滑动的时间, 例如 300ms, 计算出应该滑动的距离
          */
-        const endTime = new Date().getTime();
-        const relativeY = windowHeight - (defaults.bodyHeight / 2);
+        var endTime = new Date().getTime();
+        var relativeY = windowHeight - defaults.bodyHeight / 2;
         end = pageY;
 
         // 如果上次时间距离松开手的时间超过 100ms, 则停止了, 没有惯性滑动
@@ -1498,22 +1503,21 @@ $.fn.scroll = function (options) {
             }
         } else {
             if (Math.abs(end - start) > 10) {
-                const endPos = points.length - 1;
-                let startPos = endPos;
-                for (let i = endPos; i > 0 && startTime - points[i].time < 100; i--) {
+                var endPos = points.length - 1;
+                var startPos = endPos;
+                for (var i = endPos; i > 0 && startTime - points[i].time < 100; i--) {
                     startPos = i;
                 }
 
                 if (startPos !== endPos) {
-                    const ep = points[endPos];
-                    const sp = points[startPos];
-                    const t = ep.time - sp.time;
-                    const s = ep.y - sp.y;
-                    const v = s / t; // 出手时的速度
-                    const diff = v * 150 + (end - start); // 滑行 150ms,这里直接影响“灵敏度”
+                    var ep = points[endPos];
+                    var sp = points[startPos];
+                    var t = ep.time - sp.time;
+                    var s = ep.y - sp.y;
+                    var v = s / t; // 出手时的速度
+                    var diff = v * 150 + (end - start); // 滑行 150ms,这里直接影响“灵敏度”
                     stop(diff);
-                }
-                else {
+                } else {
                     stop(0);
                 }
             } else {
@@ -1527,52 +1531,46 @@ $.fn.scroll = function (options) {
     /**
      * 因为现在没有移除匿名函数的方法，所以先暴力移除（offAll），并且改变$scrollable。
      */
-    $scrollable = $this
-        .offAll()
-        .on('touchstart', function (evt) {
-            _start(evt.changedTouches[0].pageY);
-        })
-        .on('touchmove', function (evt) {
-            _move(evt.changedTouches[0].pageY);
-            evt.preventDefault();
-        })
-        .on('touchend', function (evt) {
-            _end(evt.changedTouches[0].pageY);
-        })
-        .find(defaults.scrollable);
+    $scrollable = $this.offAll().on('touchstart', function (evt) {
+        _start(evt.changedTouches[0].pageY);
+    }).on('touchmove', function (evt) {
+        _move(evt.changedTouches[0].pageY);
+        evt.preventDefault();
+    }).on('touchend', function (evt) {
+        _end(evt.changedTouches[0].pageY);
+    }).find(defaults.scrollable);
 
     // 判断是否支持touch事件 https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touchevents.js
-    const isSupportTouch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch;
+    var isSupportTouch = 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch;
     if (!isSupportTouch) {
-        $this
-            .on('mousedown', function (evt) {
-                _start(evt.pageY);
-                evt.stopPropagation();
-                evt.preventDefault();
-            })
-            .on('mousemove', function (evt) {
-                if (!start) return;
+        $this.on('mousedown', function (evt) {
+            _start(evt.pageY);
+            evt.stopPropagation();
+            evt.preventDefault();
+        }).on('mousemove', function (evt) {
+            if (!start) return;
 
-                _move(evt.pageY);
-                evt.stopPropagation();
-                evt.preventDefault();
-            })
-            .on('mouseup mouseleave', function (evt) {
-                _end(evt.pageY);
-                evt.stopPropagation();
-                evt.preventDefault();
-            });
-
+            _move(evt.pageY);
+            evt.stopPropagation();
+            evt.preventDefault();
+        }).on('mouseup mouseleave', function (evt) {
+            _end(evt.pageY);
+            evt.stopPropagation();
+            evt.preventDefault();
+        });
     }
 };
-const regex = /^(\d+)(?:-(\d+))?(?:\/(\d+))?$/g;
-const constraints = [[1, 31], [1, 12], [0, 6]];
+var regex = /^(\d+)(?:-(\d+))?(?:\/(\d+))?$/g;
+var constraints = [[1, 31], [1, 12], [0, 6]];
 
 /**
  * Schedule
  */
-class Schedule {
-    constructor(fields, start, end) {
+
+var Schedule = function () {
+    function Schedule(fields, start, end) {
+        _classCallCheck(this, Schedule);
+
         /**
          * dayOfMonth
          * @type {Array}
@@ -1611,81 +1609,91 @@ class Schedule {
         this._pointer = start;
     }
 
-    _findNext() {
-        let next;
-        while (true) {
-            if (this._end.getTime() - this._pointer.getTime() <= 0) {
-                throw new Error(`out of range, end is ${this._end}, current is ${this._pointer}`);
+    _createClass(Schedule, [{
+        key: "_findNext",
+        value: function _findNext() {
+            var next = void 0;
+            while (true) {
+                if (this._end.getTime() - this._pointer.getTime() <= 0) {
+                    throw new Error("out of range, end is " + this._end + ", current is " + this._pointer);
+                }
+
+                var month = this._pointer.getMonth();
+                var date = this._pointer.getDate();
+                var day = this._pointer.getDay();
+
+                if (this._months.indexOf(month + 1) === -1) {
+                    this._pointer.setMonth(month + 1);
+                    this._pointer.setDate(1);
+                    continue;
+                }
+
+                if (this._dates.indexOf(date) === -1) {
+                    this._pointer.setDate(date + 1);
+                    continue;
+                }
+
+                if (this._days.indexOf(day) === -1) {
+                    this._pointer.setDate(date + 1);
+                    continue;
+                }
+
+                next = new Date(this._pointer);
+
+                break;
             }
-
-            const month = this._pointer.getMonth();
-            const date = this._pointer.getDate();
-            const day = this._pointer.getDay();
-
-            if (this._months.indexOf(month + 1) === -1) {
-                this._pointer.setMonth(month + 1);
-                this._pointer.setDate(1);
-                continue;
-            }
-
-            if (this._dates.indexOf(date) === -1) {
-                this._pointer.setDate(date + 1);
-                continue;
-            }
-
-            if (this._days.indexOf(day) === -1) {
-                this._pointer.setDate(date + 1);
-                continue;
-            }
-
-            next = new Date(this._pointer);
-
-            break;
+            return next;
         }
-        return next;
-    }
 
-    /**
-     * fetch next data
-     */
-    next() {
-        const value = this._findNext();
-        // move next date
-        this._pointer.setDate(this._pointer.getDate() + 1);
-        return {
-            value: value,
-            done: !this.hasNext()
-        };
-    }
+        /**
+         * fetch next data
+         */
 
-    /**
-     * has next
-     * @returns {boolean}
-     */
-    hasNext() {
-        try {
-            this._findNext();
-            return true;
+    }, {
+        key: "next",
+        value: function next() {
+            var value = this._findNext();
+            // move next date
+            this._pointer.setDate(this._pointer.getDate() + 1);
+            return {
+                value: value,
+                done: !this.hasNext()
+            };
         }
-        catch (e) {
-            return false;
+
+        /**
+         * has next
+         * @returns {boolean}
+         */
+
+    }, {
+        key: "hasNext",
+        value: function hasNext() {
+            try {
+                this._findNext();
+                return true;
+            } catch (e) {
+                return false;
+            }
         }
-    }
-}
+    }]);
+
+    return Schedule;
+}();
 
 function parseField(field, constraints) {
-    const low = constraints[0];
-    const high = constraints[1];
-    let result = [];
-    let pointer;
+    var low = constraints[0];
+    var high = constraints[1];
+    var result = [];
+    var pointer = void 0;
 
     // * 号等于最低到最高
     field = field.replace(/\*/g, low + '-' + high);
 
     // 处理 1,2,5-9 这种情况
-    const fields = field.split(',');
-    for (let i = 0, len = fields.length; i < len; i++) {
-        const f = fields[i];
+    var fields = field.split(',');
+    for (var i = 0, len = fields.length; i < len; i++) {
+        var f = fields[i];
         if (f.match(regex)) {
             f.replace(regex, function ($0, lower, upper, step) {
                 // ref to `cron-parser`
@@ -1717,31 +1725,21 @@ function parseField(field, constraints) {
  * @returns {*}
  */
 function parse(expr, start, end) {
-    const atoms = expr.replace(/^\s\s*|\s\s*$/g, '').split(/\s+/);
-    const fields = [];
-    atoms.forEach((atom, index) => {
-        const constraint = constraints[index];
+    var atoms = expr.replace(/^\s\s*|\s\s*$/g, '').split(/\s+/);
+    var fields = [];
+    atoms.forEach(function (atom, index) {
+        var constraint = constraints[index];
         fields.push(parseField(atom, constraint));
     });
     return new Schedule(fields, start, end);
 }
 
-
-let render = function (tpl, data) {
-    const code = 'let p=[];with(this){p.push(\'' +
-        tpl
-            .replace(/[\r\t\n]/g, ' ')
-            .split('<%').join('\t')
-            .replace(/((^|%>)[^\t]*)'/g, '$1\r')
-            .replace(/\t=(.*?)%>/g, '\',$1,\'')
-            .split('\t').join('\');')
-            .split('%>').join('p.push(\'')
-            .split('\r').join('\\\'')
-        + '\');}return p.join(\'\');';
+var render = function render(tpl, data) {
+    var code = 'let p=[];with(this){p.push(\'' + tpl.replace(/[\r\t\n]/g, ' ').split('<%').join('\t').replace(/((^|%>)[^\t]*)'/g, '$1\r').replace(/\t=(.*?)%>/g, '\',$1,\'').split('\t').join('\');').split('%>').join('p.push(\'').split('\r').join('\\\'') + '\');}return p.join(\'\');';
     return new Function(code).apply(data);
 };
-const depthOf = (object) => {
-    let depth = 1;
+var depthOf = function depthOf(object) {
+    var depth = 1;
     if (object.children && object.children[0]) {
         depth = depthOf(object.children[0]) + 1;
     }
@@ -1751,31 +1749,34 @@ const depthOf = (object) => {
  * getStyle 获得元素计算后的样式值
  * (from http://stackoverflow.com/questions/2664045/how-to-get-an-html-elements-style-values-in-javascript)
  */
-let getStyle = function (el, styleProp) {
-    let value, defaultView = (el.ownerDocument || document).defaultView;
+var getStyle = function getStyle(el, styleProp) {
+    var value = void 0,
+        defaultView = (el.ownerDocument || document).defaultView;
     // W3C standard way:
     if (defaultView && defaultView.getComputedStyle) {
         // sanitize property name to css notation
         // (hypen separated words eg. font-Size)
         styleProp = styleProp.replace(/([A-Z])/g, '-$1').toLowerCase();
         return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
-    } else if (el.currentStyle) { // IE
+    } else if (el.currentStyle) {
+        // IE
         // sanitize property name to camelCase
-        styleProp = styleProp.replace(/\-(\w)/g, (str, letter) => {
+        styleProp = styleProp.replace(/\-(\w)/g, function (str, letter) {
             return letter.toUpperCase();
         });
         value = el.currentStyle[styleProp];
         // convert other units to pixels on IE
         if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
-            return ((value) => {
-                let oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
+            return function (value) {
+                var oldLeft = el.style.left,
+                    oldRsLeft = el.runtimeStyle.left;
                 el.runtimeStyle.left = el.currentStyle.left;
                 el.style.left = value || 0;
                 value = el.style.pixelLeft + 'px';
                 el.style.left = oldLeft;
                 el.runtimeStyle.left = oldRsLeft;
                 return value;
-            })(value);
+            }(value);
         }
         return value;
     }
@@ -1784,7 +1785,6 @@ $.fn.offAll = function () {
     /*this.forEach(($element, index) => {
      let clone = $element.cloneNode(true);
      $element.parentNode.replaceChild(clone, $element);
-
      this[index] = clone;
      });*/
     return this;
