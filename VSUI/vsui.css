@@ -173,7 +173,7 @@ a {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 }
-.vsui-header:after {
+.vsui-header:before {
   content: " ";
   width: 200%;
   height: 200%;
