@@ -8,7 +8,13 @@
   -webkit-box-shadow: @vsuiBtnBlueShadow;
   //Firefox4.0+ 、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
   box-shadow: @vsuiBtnBlueShadow;
+    &.vsui-btn_change{
 
+        background: @vsuiBtnBlueChangeBg;
+        &:active{
+            background: @vsuiBtnBlueChangeActiveBg;
+        }
+    }
 
     &:active {
         background: @vsuiBtnBlueActiveBg;

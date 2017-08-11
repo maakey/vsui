@@ -72,6 +72,14 @@ a {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
+.vsui-btn_blue.vsui-btn_change,
+.vsui-btn__submit.vsui-btn_change {
+  background: repeat-x url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g style='isolation:isolate'><rect x='0' y='0' width='900' height='28' style='fill:#1195d8'/><rect x='0' y='2' width='900' height='26' style='fill:#038fd6'/></g></svg>");
+}
+.vsui-btn_blue.vsui-btn_change:active,
+.vsui-btn__submit.vsui-btn_change:active {
+  background: repeat-x url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g style='isolation:isolate'><rect x='0' y='0' width='900' height='28' style='fill:#2986C2'/><rect x='0' y='2' width='900' height='26' style='fill:#1D80C0'/></g></svg>");
+}
 .vsui-btn_blue:active,
 .vsui-btn__submit:active {
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g style='isolation:isolate'><rect x='0' y='0' width='90' height='28' rx='5' ry='5' style='fill:#2986C2'/><rect x='0' y='2' width='90' height='26' rx='5' ry='5' style='fill:#1D80C0'/></g></svg>") no-repeat;
@@ -107,6 +115,18 @@ a {
   border-radius: 3px;
 }
 .vsui-btn_mini:after {
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.vsui-btn_change {
+  width: auto;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+.vsui-btn_change:after {
   transform: scale(0.5);
   transform-origin: 0 0;
   box-sizing: border-box;

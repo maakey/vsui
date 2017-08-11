@@ -34,6 +34,20 @@
     }
 }
 
+.vsui-btn_change {
+    //height: auto;
+    width: auto;
+    .vsui-btn_inline;
+    border-radius: @vsuiBtnMiniBorderRadius;
+    padding: 0 5px;
+    &:after {
+        transform: scale(.5);
+        transform-origin: 0 0;
+        box-sizing: border-box;
+        border-radius: @vsuiBtnMiniBorderRadius*2;
+    }
+}
+
 .vsui-btn_header {
     height: @vsuiBtnHeaderHeight;
     width: @vsuiBtnHeaderWidth;
