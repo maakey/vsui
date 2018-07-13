@@ -5,7 +5,7 @@ VSUI
 
 VSUI框架
 
-### 使用
+### 使用说明
 
 需要引用jQuery框架
 ```html
